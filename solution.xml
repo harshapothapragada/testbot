@@ -1,0 +1,175 @@
+<ImportExportXml version="9.2.22042.149" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SolutionManifest>
+    <UniqueName>Test</UniqueName>
+    <LocalizedNames>
+      <LocalizedName description="Test" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions />
+    <Version>1.0.0.1</Version>
+    <Managed>1</Managed>
+    <Publisher>
+      <UniqueName>Crb4165</UniqueName>
+      <LocalizedNames>
+        <LocalizedName description="CDS Default Publisher" languagecode="1033" />
+      </LocalizedNames>
+      <Descriptions />
+      <EMailAddress xsi:nil="true"></EMailAddress>
+      <SupportingWebsiteUrl xsi:nil="true"></SupportingWebsiteUrl>
+      <CustomizationPrefix>cr5be</CustomizationPrefix>
+      <CustomizationOptionValuePrefix>47786</CustomizationOptionValuePrefix>
+      <Addresses>
+        <Address>
+          <AddressNumber>1</AddressNumber>
+          <AddressTypeCode xsi:nil="true"></AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode xsi:nil="true"></ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+        <Address>
+          <AddressNumber>2</AddressNumber>
+          <AddressTypeCode xsi:nil="true"></AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode xsi:nil="true"></ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+      </Addresses>
+    </Publisher>
+    <RootComponents>
+      <RootComponent type="29" id="{17775bcb-fec5-ec11-a7b6-00224826a3f9}" behavior="0" />
+      <RootComponent type="29" id="{1c242cc2-70cc-ec11-a7b5-00224834a45c}" behavior="0" />
+      <RootComponent type="29" id="{278ff385-07cd-ec11-a7b5-00224834a45c}" behavior="0" />
+      <RootComponent type="29" id="{2ab2a73e-25c6-ec11-a7b6-00224826a3f9}" behavior="0" />
+      <RootComponent type="29" id="{3034c8d4-83c4-ec11-a7b6-00224826a3f9}" behavior="0" />
+      <RootComponent type="29" id="{3acf9d6e-70c4-ec11-a7b6-00224826a3f9}" behavior="0" />
+      <RootComponent type="29" id="{3e0b6cca-85ba-ec11-983f-00224823ae8d}" behavior="0" />
+      <RootComponent type="29" id="{4cd5781b-6ab1-ec11-9840-000d3a993196}" behavior="0" />
+      <RootComponent type="29" id="{50a7d160-81c4-ec11-a7b6-00224826a3f9}" behavior="0" />
+      <RootComponent type="29" id="{50df0a06-0acd-ec11-a7b5-00224834a45c}" behavior="0" />
+      <RootComponent type="29" id="{57c580d9-2ec5-ec11-a7b6-00224826a3f9}" behavior="0" />
+      <RootComponent type="29" id="{5e2be42d-7ecf-ec11-a7b5-000d3a8cc416}" behavior="0" />
+      <RootComponent type="29" id="{6f72c54f-79c4-ec11-a7b6-00224826a3f9}" behavior="0" />
+      <RootComponent type="29" id="{981fe7ee-29c6-ec11-a7b6-00224826a3f9}" behavior="0" />
+      <RootComponent type="29" id="{9b583585-ccc6-ec11-a7b6-00224826a3f9}" behavior="0" />
+      <RootComponent type="29" id="{b73a2217-3dc5-ec11-a7b6-00224826a3f9}" behavior="0" />
+      <RootComponent type="29" id="{f705cb10-ffd0-ec11-a7b5-000d3a8cc416}" behavior="0" />
+      <RootComponent type="29" id="{fbce71a9-0cd1-ec11-a7b5-000d3a8cc416}" behavior="0" />
+      <RootComponent type="29" id="{fe63e125-19cd-ec11-a7b5-00224834a45c}" behavior="0" />
+    </RootComponents>
+    <MissingDependencies>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedwebcontents_0b60e" solution="Active" id.connectionreferencelogicalname="new_sharedwebcontents_0b60e" />
+        <Dependent type="29" displayName="Overdue PO Items ODATA Flow" id="{17775bcb-fec5-ec11-a7b6-00224826a3f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedwebcontents_0b60e" solution="Active" id.connectionreferencelogicalname="new_sharedwebcontents_0b60e" />
+        <Dependent type="29" displayName="Stock Odata flow" id="{278ff385-07cd-ec11-a7b5-00224834a45c}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedwebcontents_0b60e" solution="Active" id.connectionreferencelogicalname="new_sharedwebcontents_0b60e" />
+        <Dependent type="29" displayName="Purchase Contracts Items OData call" id="{2ab2a73e-25c6-ec11-a7b6-00224826a3f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedwebcontents_0b60e" solution="Active" id.connectionreferencelogicalname="new_sharedwebcontents_0b60e" />
+        <Dependent type="29" displayName="Sales Analytics ODATA Flow" id="{3acf9d6e-70c4-ec11-a7b6-00224826a3f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedwebcontents_0b60e" solution="Active" id.connectionreferencelogicalname="new_sharedwebcontents_0b60e" />
+        <Dependent type="29" displayName="Sales Order Odata Flow" id="{3e0b6cca-85ba-ec11-983f-00224823ae8d}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedwebcontents_0b60e" solution="Active" id.connectionreferencelogicalname="new_sharedwebcontents_0b60e" />
+        <Dependent type="29" displayName="Highest PO NetAmount ODATA Flow" id="{57c580d9-2ec5-ec11-a7b6-00224826a3f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedwebcontents_0b60e" solution="Active" id.connectionreferencelogicalname="new_sharedwebcontents_0b60e" />
+        <Dependent type="29" displayName="Track PO ODATA Flow" id="{5e2be42d-7ecf-ec11-a7b5-000d3a8cc416}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedwebcontents_0b60e" solution="Active" id.connectionreferencelogicalname="new_sharedwebcontents_0b60e" />
+        <Dependent type="29" displayName="Monthly Sales Revenue ODATA Flow" id="{6f72c54f-79c4-ec11-a7b6-00224826a3f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedwebcontents_0b60e" solution="Active" id.connectionreferencelogicalname="new_sharedwebcontents_0b60e" />
+        <Dependent type="29" displayName="Shortage Report ODATA Flow" id="{981fe7ee-29c6-ec11-a7b6-00224826a3f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedwebcontents_0b60e" solution="Active" id.connectionreferencelogicalname="new_sharedwebcontents_0b60e" />
+        <Dependent type="29" displayName="Sales BoardRoom ODATA Flow" id="{9b583585-ccc6-ec11-a7b6-00224826a3f9}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedwebcontents_0b60e" solution="Active" id.connectionreferencelogicalname="new_sharedwebcontents_0b60e" />
+        <Dependent type="29" displayName="OM Dashboard ODATA Flow" id="{f705cb10-ffd0-ec11-a7b5-000d3a8cc416}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedwebcontents_0b60e" solution="Active" id.connectionreferencelogicalname="new_sharedwebcontents_0b60e" />
+        <Dependent type="29" displayName="Total Sales ODATA Flow" id="{fbce71a9-0cd1-ec11-a7b5-000d3a8cc416}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedwebcontents_3ceac" solution="Active" id.connectionreferencelogicalname="new_sharedwebcontents_3ceac" />
+        <Dependent type="29" displayName="solarbot-exchange-token-flow" id="{4cd5781b-6ab1-ec11-9840-000d3a993196}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="EnvironmentVariableDefinition" displayName="new_bot_tenantid" solution="Active" id.schemaname="new_bot_tenantid" />
+        <Dependent type="29" displayName="solarbot-exchange-token-flow" id="{4cd5781b-6ab1-ec11-9840-000d3a993196}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="EnvironmentVariableDefinition" displayName="new_botclientId" solution="Active" id.schemaname="new_botclientId" />
+        <Dependent type="29" displayName="solarbot-exchange-token-flow" id="{4cd5781b-6ab1-ec11-9840-000d3a993196}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="EnvironmentVariableDefinition" displayName="new_botsecret" solution="Active" id.schemaname="new_botsecret" />
+        <Dependent type="29" displayName="solarbot-exchange-token-flow" id="{4cd5781b-6ab1-ec11-9840-000d3a993196}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="EnvironmentVariableDefinition" displayName="new_sap_clientid" solution="Active" id.schemaname="new_sap_clientid" />
+        <Dependent type="29" displayName="solarbot-exchange-token-flow" id="{4cd5781b-6ab1-ec11-9840-000d3a993196}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="EnvironmentVariableDefinition" displayName="new_sap_clientsecret" solution="Active" id.schemaname="new_sap_clientsecret" />
+        <Dependent type="29" displayName="solarbot-exchange-token-flow" id="{4cd5781b-6ab1-ec11-9840-000d3a993196}" />
+      </MissingDependency>
+    </MissingDependencies>
+  </SolutionManifest>
+</ImportExportXml>

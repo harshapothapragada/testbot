@@ -1,0 +1,363 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_webcontents_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedwebcontents_0b60e"
+        },
+        "api": {
+          "name": "shared_webcontents"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "bab9ecec-84b5-49a9-9a32-d250b29d5a61"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "token",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "\"\"",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "duration",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "d67f3df8-6095-4605-96b0-0c4786f77aae"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "results": "@variables('result_set')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "results": {
+                  "title": "results",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "158bd887-4982-439a-8386-90a1d8379152"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "sales_duration",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Switch": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Case": {
+              "case": "Last week",
+              "actions": {
+                "Set_variable": {
+                  "runAfter": {},
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "sales_duration",
+                    "value": "LAST7DAYS"
+                  }
+                }
+              }
+            },
+            "Case_2": {
+              "case": "Last two weeks",
+              "actions": {
+                "Set_variable_2": {
+                  "runAfter": {},
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "sales_duration",
+                    "value": "LAST14DAYS"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {
+              "Set_variable_3": {
+                "runAfter": {},
+                "type": "SetVariable",
+                "inputs": {
+                  "name": "sales_duration",
+                  "value": "LAST30DAYS"
+                }
+              }
+            }
+          },
+          "expression": "@triggerBody()['text_1']",
+          "metadata": {
+            "operationMetadataId": "9974d20b-03e0-4dd1-b655-c43395a1351b"
+          },
+          "type": "Switch"
+        },
+        "Call_SAP_Odata_Service": {
+          "runAfter": {
+            "Switch": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f105df2b-0411-4950-b336-9fb344506bea"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_webcontents_1",
+              "operationId": "InvokeHttp",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+            },
+            "parameters": {
+              "request/method": "GET",
+              "request/url": "/sap/opu/odata/sap/ZC_SALES_ANALYSIS_CAI_CDS/ZC_SALES_ANALYSIS_CAI(week='@{variables('sales_duration')}',CURR='USD')/Set?%24orderby=RequestedDeliveryDate%20asc&%24filter=SalesDocumentType%20eq%20%27ZCSO%27%20or%20SalesDocumentType%20eq%20%27ZIOR%27%20or%20SalesDocumentType%20eq%20%27ZITP%27%20or%20SalesDocumentType%20eq%20%27ZMSO%27%20or%20SalesDocumentType%20eq%20%27ZOR%27%20or%20SalesDocumentType%20eq%20%27ZTPO%27&%24inlinecount=allpages&sap-client=505&sap-language=EN&$format=json",
+              "request/headers": {
+                "Authorization": "Bearer @{triggerBody()['text']}",
+                "Accept": "application/json"
+              }
+            },
+            "authentication": "@parameters('$authentication')",
+            "retryPolicy": {
+              "type": "none"
+            }
+          }
+        },
+        "Parse_JSON": {
+          "runAfter": {
+            "Call_SAP_Odata_Service": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "bc625688-41e0-4cc4-bf3c-21d80c3e7546"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('Call_SAP_Odata_Service')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "d": {
+                  "type": "object",
+                  "properties": {
+                    "__count": {
+                      "type": "string"
+                    },
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "__metadata": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "uri": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "week": {
+                            "type": "string"
+                          },
+                          "CURR": {
+                            "type": "string"
+                          },
+                          "SalesDocument": {
+                            "type": "string"
+                          },
+                          "SalesDocumentType": {
+                            "type": "string"
+                          },
+                          "NetAmount": {
+                            "type": "string"
+                          },
+                          "TransactionCurrency": {
+                            "type": "string"
+                          },
+                          "ConvertedPrice": {
+                            "type": "string"
+                          },
+                          "RequestedCurrency": {
+                            "type": "string"
+                          },
+                          "RequestedDeliveryDate": {
+                            "type": "string"
+                          },
+                          "OverallSDProcessStatus": {
+                            "type": "string"
+                          },
+                          "FulfillmentProcessPhase": {
+                            "type": "string"
+                          },
+                          "FromDate": {
+                            "type": "string"
+                          },
+                          "Parameters": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "__metadata",
+                          "week",
+                          "CURR",
+                          "SalesDocument",
+                          "SalesDocumentType",
+                          "NetAmount",
+                          "TransactionCurrency",
+                          "ConvertedPrice",
+                          "RequestedCurrency",
+                          "RequestedDeliveryDate",
+                          "OverallSDProcessStatus",
+                          "FulfillmentProcessPhase",
+                          "FromDate",
+                          "Parameters"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@body('Parse_JSON')?['d']?['results']",
+          "actions": {
+            "Compose": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "52aba253-baa7-4ea6-b186-01dff30075ee"
+              },
+              "type": "Compose",
+              "inputs": "\nSales document Id : @{items('Apply_to_each')?['SalesDocument']}\n\nNet Amount :  @{items('Apply_to_each')?['NetAmount']} @{items('Apply_to_each')?['TransactionCurrency']}\n\n-------------------------"
+            },
+            "Append_to_string_variable": {
+              "runAfter": {
+                "Compose": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a8aa1132-ce3e-4799-a14c-df424260d8fe"
+              },
+              "type": "AppendToStringVariable",
+              "inputs": {
+                "name": "result_set",
+                "value": "@{outputs('Compose')}\n\n"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e48fbaa5-11f9-4574-923c-d853b0512ffa"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable_2": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "c1006120-5e96-41ef-9ab6-ea9917fa8ee5"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "result_set",
+                "type": "string",
+                "value": "Total number of Sales Orders: @{body('Parse_JSON')?['d']?['__count']}\n\nDetails:\n\n\n"
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}

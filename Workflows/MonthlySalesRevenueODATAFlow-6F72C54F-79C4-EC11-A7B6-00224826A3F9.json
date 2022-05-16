@@ -1,0 +1,243 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_webcontents_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedwebcontents_0b60e"
+        },
+        "api": {
+          "name": "shared_webcontents"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "c9651e71-33db-4064-8da5-498c0c84dab1"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "token",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "numberofmonths",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b5e146dc-5180-4f9d-b99e-718dd8331825"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "response": "@variables('result_set')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "title": "response",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Invoke_an_HTTP_request": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "13059c6d-4d32-41c9-a4a9-d1a7184a7368"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_webcontents_1",
+              "operationId": "InvokeHttp",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+            },
+            "parameters": {
+              "request/method": "GET",
+              "request/url": "/sap/opu/odata/sap/SD_F2200_OVP_ISR_SRV/C_MonthlySalesRevenue_F2200(P_NumberOfMonths='@{triggerBody()['text_1']}',P_ExchangeRateType='M',P_DisplayCurrency='MXN')/Results?sap-client=511&$orderby=YearMonth asc&$top=100&$select=YearMonth,CalendarMonthName,IncomingSalesOrdersNetAmtInDC,DisplayCurrency,ComprnIncgSlsOrdersNetAmtInDC&$format=json",
+              "request/headers": {
+                "Authorization": "Bearer @{triggerBody()['text']}",
+                "Accept": "application/json"
+              }
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Parse_JSON": {
+          "runAfter": {
+            "Invoke_an_HTTP_request": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e1a4a92f-056d-4c54-b407-51d94898a883"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('Invoke_an_HTTP_request')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "d": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "__metadata": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "uri": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "YearMonth": {
+                            "type": "string"
+                          },
+                          "CalendarMonthName": {
+                            "type": "string"
+                          },
+                          "DisplayCurrency": {
+                            "type": "string"
+                          },
+                          "IncomingSalesOrdersNetAmtInDC": {
+                            "type": "string"
+                          },
+                          "ComprnIncgSlsOrdersNetAmtInDC": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "__metadata",
+                          "YearMonth",
+                          "CalendarMonthName",
+                          "DisplayCurrency",
+                          "IncomingSalesOrdersNetAmtInDC",
+                          "ComprnIncgSlsOrdersNetAmtInDC"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f1d7d6ef-4d65-46f0-bf7f-b30cd3acd7b8"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "result_set",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@body('Parse_JSON')?['d']?['results']",
+          "actions": {
+            "Compose": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "804c0ad6-4fb3-4e0f-8b6b-31b781ff4115"
+              },
+              "type": "Compose",
+              "inputs": "@items('Apply_to_each')?['IncomingSalesOrdersNetAmtInDC']"
+            },
+            "Append_to_string_variable": {
+              "runAfter": {
+                "Compose": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a121c007-a022-4c16-a865-b157d5af5f82"
+              },
+              "type": "AppendToStringVariable",
+              "inputs": {
+                "name": "result_set",
+                "value": "@{outputs('Compose')} @{items('Apply_to_each')?['DisplayCurrency']}"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a6232bf7-5ed4-415a-b703-841a2b057437"
+          },
+          "type": "Foreach"
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}

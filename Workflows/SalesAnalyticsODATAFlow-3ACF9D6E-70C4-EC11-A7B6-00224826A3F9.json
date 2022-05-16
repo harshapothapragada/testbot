@@ -1,0 +1,576 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_webcontents_2": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedwebcontents_0b60e"
+        },
+        "api": {
+          "name": "shared_webcontents"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "0cb4613a-d88f-4349-a2cf-fb104a201bab"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "token",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "input",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "flowflag",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_2"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Switch": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f3c5ad54-8b00-49c1-a0bf-64ba9f42c655"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "response": "@variables('result_set')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "title": "response",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Switch": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Case": {
+              "case": "By_Month",
+              "actions": {
+                "Call_SAP_ODATA_call": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "51a14b7a-68d5-4bee-b7bc-18a90d8f1c91"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_webcontents_2",
+                      "operationId": "InvokeHttp",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                    },
+                    "parameters": {
+                      "request/method": "GET",
+                      "request/url": "/sap/opu/odata/sap/C_SALESANALYTICSQRY_1_CDS/C_SALESANALYTICSQRY_1(P_ExchangeRateType=%27M%27,P_DisplayCurrency=%27USD%27)/Results?sap-client=505&$select=BillingDocDateYearMonth,BillingDocDateYearMonth_T,OpnSlsOrdsForDelivAmtInDspCrcy,OpnSlsOrdsForDelivAmtInDspCrcy_E,OpenSlsOrdsForInvcsNetAmtInDC,OpenSlsOrdsForInvcsNetAmtInDC_E,OpnOutbDelivsForInvcNetAmtInDC,OpnOutbDelivsForInvcNetAmtInDC_E,SlsVolumeNetAmtInDspCrcy,SlsVolumeNetAmtInDspCrcy_E&$orderby=BillingDocDateYearMonth%20asc&$inlinecount=allpages&$filter=(BillingDocDateYearMonth eq '@{triggerBody()['text_1']}')&$format=json",
+                      "request/headers": {
+                        "Authorization": "Bearer @{triggerBody()['text']}",
+                        "Accept": "application/json"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Parse_JSON": {
+                  "runAfter": {
+                    "Call_SAP_ODATA_call": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "f10b7540-f4fa-4add-a5c2-4ceb2c112325"
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@body('Call_SAP_ODATA_call')",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "d": {
+                          "type": "object",
+                          "properties": {
+                            "__count": {
+                              "type": "string"
+                            },
+                            "results": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "__metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "uri": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "BillingDocDateYearMonth": {
+                                    "type": "string"
+                                  },
+                                  "BillingDocDateYearMonth_T": {
+                                    "type": "string"
+                                  },
+                                  "OpnSlsOrdsForDelivAmtInDspCrcy": {
+                                    "type": "string"
+                                  },
+                                  "OpnSlsOrdsForDelivAmtInDspCrcy_E": {
+                                    "type": "string"
+                                  },
+                                  "OpnOutbDelivsForInvcNetAmtInDC": {
+                                    "type": "string"
+                                  },
+                                  "OpnOutbDelivsForInvcNetAmtInDC_E": {
+                                    "type": "string"
+                                  },
+                                  "SlsVolumeNetAmtInDspCrcy": {
+                                    "type": "string"
+                                  },
+                                  "SlsVolumeNetAmtInDspCrcy_E": {
+                                    "type": "string"
+                                  },
+                                  "OpenSlsOrdsForInvcsNetAmtInDC": {
+                                    "type": "string"
+                                  },
+                                  "OpenSlsOrdsForInvcsNetAmtInDC_E": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "__metadata",
+                                  "BillingDocDateYearMonth",
+                                  "BillingDocDateYearMonth_T",
+                                  "OpnSlsOrdsForDelivAmtInDspCrcy",
+                                  "OpnSlsOrdsForDelivAmtInDspCrcy_E",
+                                  "OpnOutbDelivsForInvcNetAmtInDC",
+                                  "OpnOutbDelivsForInvcNetAmtInDC_E",
+                                  "SlsVolumeNetAmtInDspCrcy",
+                                  "SlsVolumeNetAmtInDspCrcy_E",
+                                  "OpenSlsOrdsForInvcsNetAmtInDC",
+                                  "OpenSlsOrdsForInvcsNetAmtInDC_E"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Apply_to_each": {
+                  "foreach": "@body('Parse_JSON')?['d']?['results']",
+                  "actions": {
+                    "Compose": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "c65693ae-b56b-4a6d-b44d-afbe19e74ea0"
+                      },
+                      "type": "Compose",
+                      "inputs": "Total Sales Volume Net Amount is @{items('Apply_to_each')?['SlsVolumeNetAmtInDspCrcy']} @{items('Apply_to_each')?['SlsVolumeNetAmtInDspCrcy_E']}\n\nOpen Sales Orders for delivery is @{items('Apply_to_each')?['OpnSlsOrdsForDelivAmtInDspCrcy']}\n @{items('Apply_to_each')?['OpnSlsOrdsForDelivAmtInDspCrcy_E']}\n\n Open Outbound delivery for invoice is @{items('Apply_to_each')?['OpnOutbDelivsForInvcNetAmtInDC']} @{items('Apply_to_each')?['OpnOutbDelivsForInvcNetAmtInDC_E']}\n\nOpen Sales Orders for invoice is @{items('Apply_to_each')?['OpenSlsOrdsForInvcsNetAmtInDC']}  @{items('Apply_to_each')?['OpenSlsOrdsForInvcsNetAmtInDC_E']}\n"
+                    },
+                    "Append_to_string_variable": {
+                      "runAfter": {
+                        "Compose": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "45069a1c-f108-404e-9a99-5062c35d026f"
+                      },
+                      "type": "AppendToStringVariable",
+                      "inputs": {
+                        "name": "result_set",
+                        "value": "@outputs('Compose')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "47ca879a-3c47-44b9-a715-4c6644812376"
+                  },
+                  "type": "Foreach"
+                }
+              }
+            },
+            "Case_2": {
+              "case": "By_SalesOrg",
+              "actions": {
+                "Get_SAP_Odata_Call": {
+                  "runAfter": {},
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_webcontents_2",
+                      "operationId": "InvokeHttp",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                    },
+                    "parameters": {
+                      "request/method": "GET",
+                      "request/url": "/sap/opu/odata/sap/C_SALESANALYTICSQRY_1_CDS//C_SALESANALYTICSQRY_1(P_ExchangeRateType=%27M%27,P_DisplayCurrency=%27USD%27)/Results?sap-client=505&$select=SalesOrganization,SalesOrganization_T,OpnSlsOrdsForDelivAmtInDspCrcy,OpnSlsOrdsForDelivAmtInDspCrcy_E,OpenSlsOrdsForInvcsNetAmtInDC,OpenSlsOrdsForInvcsNetAmtInDC_E,OpnOutbDelivsForInvcNetAmtInDC,OpnOutbDelivsForInvcNetAmtInDC_E,SlsVolumeNetAmtInDspCrcy,SlsVolumeNetAmtInDspCrcy_E&$orderby=SlsVolumeNetAmtInDspCrcy%20desc&$inlinecount=allpages&$filter=(SalesOrganization eq '@{triggerBody()['text_1']}')&$format=json",
+                      "request/headers": {
+                        "Authorization": "Bearer @{triggerBody()['text']}",
+                        "Accept": "application/json"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Parse_response_JSON": {
+                  "runAfter": {
+                    "Get_SAP_Odata_Call": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@body('Get_SAP_Odata_Call')",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "d": {
+                          "type": "object",
+                          "properties": {
+                            "__count": {
+                              "type": "string"
+                            },
+                            "results": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "__metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "uri": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "SalesOrganization": {
+                                    "type": "string"
+                                  },
+                                  "SalesOrganization_T": {
+                                    "type": "string"
+                                  },
+                                  "OpnSlsOrdsForDelivAmtInDspCrcy": {
+                                    "type": "string"
+                                  },
+                                  "OpnSlsOrdsForDelivAmtInDspCrcy_E": {
+                                    "type": "string"
+                                  },
+                                  "OpnOutbDelivsForInvcNetAmtInDC": {
+                                    "type": "string"
+                                  },
+                                  "OpnOutbDelivsForInvcNetAmtInDC_E": {
+                                    "type": "string"
+                                  },
+                                  "SlsVolumeNetAmtInDspCrcy": {
+                                    "type": "string"
+                                  },
+                                  "SlsVolumeNetAmtInDspCrcy_E": {
+                                    "type": "string"
+                                  },
+                                  "OpenSlsOrdsForInvcsNetAmtInDC": {
+                                    "type": "string"
+                                  },
+                                  "OpenSlsOrdsForInvcsNetAmtInDC_E": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "__metadata",
+                                  "SalesOrganization",
+                                  "SalesOrganization_T",
+                                  "OpnSlsOrdsForDelivAmtInDspCrcy",
+                                  "OpnSlsOrdsForDelivAmtInDspCrcy_E",
+                                  "OpnOutbDelivsForInvcNetAmtInDC",
+                                  "OpnOutbDelivsForInvcNetAmtInDC_E",
+                                  "SlsVolumeNetAmtInDspCrcy",
+                                  "SlsVolumeNetAmtInDspCrcy_E",
+                                  "OpenSlsOrdsForInvcsNetAmtInDC",
+                                  "OpenSlsOrdsForInvcsNetAmtInDC_E"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Apply_to_each_2": {
+                  "foreach": "@body('Parse_response_JSON')?['d']?['results']",
+                  "actions": {
+                    "Compose_2": {
+                      "runAfter": {},
+                      "type": "Compose",
+                      "inputs": "Total Sales Volume Net Amount is  @{items('Apply_to_each_2')?['SlsVolumeNetAmtInDspCrcy']} @{items('Apply_to_each_2')?['SlsVolumeNetAmtInDspCrcy_E']}\n\nOpen Sales Orders for delivery is @{items('Apply_to_each_2')?['OpnSlsOrdsForDelivAmtInDspCrcy']} @{items('Apply_to_each_2')?['OpnSlsOrdsForDelivAmtInDspCrcy_E']}\n\nOpen Outbound delivery for the  invoice is  @{items('Apply_to_each_2')?['OpnOutbDelivsForInvcNetAmtInDC']} @{items('Apply_to_each_2')?['OpnOutbDelivsForInvcNetAmtInDC_E']}\n\nOpen Sales Orders for the invoice is @{items('Apply_to_each_2')?['OpenSlsOrdsForInvcsNetAmtInDC']} @{items('Apply_to_each_2')?['OpenSlsOrdsForInvcsNetAmtInDC_E']}\n"
+                    },
+                    "Append_to_string_variable_2": {
+                      "runAfter": {
+                        "Compose_2": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "AppendToStringVariable",
+                      "inputs": {
+                        "name": "result_set",
+                        "value": "@outputs('Compose_2')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_response_JSON": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "Foreach"
+                }
+              }
+            },
+            "Case_3": {
+              "case": "By_PartyId",
+              "actions": {
+                "Invoke_an_HTTP_request": {
+                  "runAfter": {},
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_webcontents_2",
+                      "operationId": "InvokeHttp",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                    },
+                    "parameters": {
+                      "request/method": "GET",
+                      "request/url": "/sap/opu/odata/sap/C_SALESANALYTICSQRY_1_CDS/C_SALESANALYTICSQRY_1(P_ExchangeRateType=%27M%27,P_DisplayCurrency=%27USD%27)/Results?sap-client=505&$select=SoldToParty,SoldToParty_T,OpnSlsOrdsForDelivAmtInDspCrcy,OpnSlsOrdsForDelivAmtInDspCrcy_E,OpenSlsOrdsForInvcsNetAmtInDC,OpenSlsOrdsForInvcsNetAmtInDC_E,OpnOutbDelivsForInvcNetAmtInDC,OpnOutbDelivsForInvcNetAmtInDC_E,SlsVolumeNetAmtInDspCrcy,SlsVolumeNetAmtInDspCrcy_E&$orderby=SlsVolumeNetAmtInDspCrcy%20desc&$inlinecount=allpages&$filter=(SoldToParty eq '@{triggerBody()['text_1']}')&$format=json",
+                      "request/headers": {
+                        "Authorization": "Bearer @{triggerBody()['text']}",
+                        "Content-Type": "application/json"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Parse_JSON_2": {
+                  "runAfter": {
+                    "Invoke_an_HTTP_request": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@body('Invoke_an_HTTP_request')",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "d": {
+                          "type": "object",
+                          "properties": {
+                            "__count": {
+                              "type": "string"
+                            },
+                            "results": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "__metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "uri": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "SoldToParty": {
+                                    "type": "string"
+                                  },
+                                  "SoldToParty_T": {
+                                    "type": "string"
+                                  },
+                                  "OpnSlsOrdsForDelivAmtInDspCrcy": {
+                                    "type": "string"
+                                  },
+                                  "OpnSlsOrdsForDelivAmtInDspCrcy_E": {
+                                    "type": "string"
+                                  },
+                                  "OpnOutbDelivsForInvcNetAmtInDC": {
+                                    "type": "string"
+                                  },
+                                  "OpnOutbDelivsForInvcNetAmtInDC_E": {
+                                    "type": "string"
+                                  },
+                                  "SlsVolumeNetAmtInDspCrcy": {
+                                    "type": "string"
+                                  },
+                                  "SlsVolumeNetAmtInDspCrcy_E": {
+                                    "type": "string"
+                                  },
+                                  "OpenSlsOrdsForInvcsNetAmtInDC": {
+                                    "type": "string"
+                                  },
+                                  "OpenSlsOrdsForInvcsNetAmtInDC_E": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "__metadata",
+                                  "SoldToParty",
+                                  "SoldToParty_T",
+                                  "OpnSlsOrdsForDelivAmtInDspCrcy",
+                                  "OpnSlsOrdsForDelivAmtInDspCrcy_E",
+                                  "OpnOutbDelivsForInvcNetAmtInDC",
+                                  "OpnOutbDelivsForInvcNetAmtInDC_E",
+                                  "SlsVolumeNetAmtInDspCrcy",
+                                  "SlsVolumeNetAmtInDspCrcy_E",
+                                  "OpenSlsOrdsForInvcsNetAmtInDC",
+                                  "OpenSlsOrdsForInvcsNetAmtInDC_E"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Apply_to_each_3": {
+                  "foreach": "@body('Parse_JSON_2')?['d']?['results']",
+                  "actions": {
+                    "Compose_3": {
+                      "runAfter": {},
+                      "type": "Compose",
+                      "inputs": "Total Sales Volume Net Amount is   @{items('Apply_to_each_3')?['SlsVolumeNetAmtInDspCrcy']} @{items('Apply_to_each_3')?['SlsVolumeNetAmtInDspCrcy_E']}\n\nOpen Sales Orders for delivery is  @{items('Apply_to_each_3')?['OpnSlsOrdsForDelivAmtInDspCrcy']} @{items('Apply_to_each_3')?['OpnSlsOrdsForDelivAmtInDspCrcy_E']}\n\nOpen Outbound delivery for the  invoice is  @{items('Apply_to_each_3')?['OpnOutbDelivsForInvcNetAmtInDC']} @{items('Apply_to_each_3')?['OpnSlsOrdsForDelivAmtInDspCrcy_E']}\n\nOpen Sales Orders for the invoice is  @{items('Apply_to_each_3')?['OpenSlsOrdsForInvcsNetAmtInDC']} @{items('Apply_to_each_3')?['OpenSlsOrdsForInvcsNetAmtInDC_E']}\n"
+                    },
+                    "Append_to_string_variable_3": {
+                      "runAfter": {
+                        "Compose_3": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "AppendToStringVariable",
+                      "inputs": {
+                        "name": "result_set",
+                        "value": "@outputs('Compose_3')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "Foreach"
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {}
+          },
+          "expression": "@triggerBody()['text_2']",
+          "metadata": {
+            "operationMetadataId": "c6b634f0-d46e-4255-91b6-bb1d6eac7bea"
+          },
+          "type": "Switch"
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "6eeaa81a-c3e1-449b-9f5c-859f813c055e"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "result_set",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}

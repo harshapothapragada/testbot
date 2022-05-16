@@ -1,0 +1,385 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_webcontents_1": {
+        "runtimeSource": "embedded",
+        "connection": {},
+        "api": {
+          "name": "shared_webcontents"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "22e86144-2102-4228-a0d2-a139ce59246a"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "token",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "purchase group",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "flow",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_2"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Switch": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f3c5ad54-8b00-49c1-a0bf-64ba9f42c655"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "response": "@variables('result_set')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "title": "response",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Switch": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Case": {
+              "case": "With purchase group",
+              "actions": {
+                "Invoke_an_HTTP_request": {
+                  "runAfter": {},
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_webcontents_1",
+                      "operationId": "InvokeHttp",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                    },
+                    "parameters": {
+                      "request/method": "GET",
+                      "request/url": "https://vhlevfg1ci.hec.levi.com:44300/sap/opu/odata/sap/MM_PRC_OVP/C_PurOrdValueWithPlnd(P_DisplayCurrency='USD',P_DateFunction=%27PREVIOUSYEARTODATE%27)/Results?sap-client=505&$select=MaterialGroup%2CMaterialGroupName%2CPurOrdNetAmountInDisplayCrcy%2CDisplayCurrency%2CPurchasingGroup%2CPurchasingGroupName&$filter=PurchasingGroup%20eq%20%27@{triggerBody()['text_1']}%27&$top=5&$orderby=PurOrdNetAmountInDisplayCrcy%20desc&$format=json&$inlinecount=allpages",
+                      "request/headers": {
+                        "Authorization": "Bearer @{triggerBody()['text']}",
+                        "Accept": "application/json"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Parse_JSON": {
+                  "runAfter": {
+                    "Invoke_an_HTTP_request": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@body('Invoke_an_HTTP_request')",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "d": {
+                          "type": "object",
+                          "properties": {
+                            "__count": {
+                              "type": "string"
+                            },
+                            "results": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "__metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "uri": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "PurchasingGroup": {
+                                    "type": "string"
+                                  },
+                                  "PurchasingGroupName": {
+                                    "type": "string"
+                                  },
+                                  "MaterialGroup": {
+                                    "type": "string"
+                                  },
+                                  "MaterialGroupName": {
+                                    "type": "string"
+                                  },
+                                  "DisplayCurrency": {
+                                    "type": "string"
+                                  },
+                                  "PurOrdNetAmountInDisplayCrcy": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "__metadata",
+                                  "PurchasingGroup",
+                                  "PurchasingGroupName",
+                                  "MaterialGroup",
+                                  "MaterialGroupName",
+                                  "DisplayCurrency",
+                                  "PurOrdNetAmountInDisplayCrcy"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Apply_to_each": {
+                  "foreach": "@body('Parse_JSON')?['d']?['results']",
+                  "actions": {
+                    "Compose": {
+                      "runAfter": {},
+                      "type": "Compose",
+                      "inputs": "\nMaterial Group is @{items('Apply_to_each')?['MaterialGroup']} ( @{items('Apply_to_each')?['MaterialGroupName']} )\n\nPO Net Amount is @{items('Apply_to_each')?['PurOrdNetAmountInDisplayCrcy']}\n___________________________________________________\n"
+                    },
+                    "Append_to_string_variable": {
+                      "runAfter": {
+                        "Compose": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "AppendToStringVariable",
+                      "inputs": {
+                        "name": "result_set",
+                        "value": "@outputs('Compose')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "Foreach"
+                }
+              }
+            },
+            "Case_2": {
+              "case": "Without purchase group",
+              "actions": {
+                "Invoke_an_HTTP_request_2": {
+                  "runAfter": {},
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_webcontents_1",
+                      "operationId": "InvokeHttp",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                    },
+                    "parameters": {
+                      "request/method": "GET",
+                      "request/url": "https://vhlevfg1ci.hec.levi.com:44300/sap/opu/odata/sap/MM_PRC_OVP/C_PurOrdValueWithPlnd(P_DisplayCurrency='USD',P_DateFunction=%27PREVIOUSYEARTODATE%27)/Results?sap-client=505&$select=MaterialGroup%2CMaterialGroupName%2CPurOrdNetAmountInDisplayCrcy%2CDisplayCurrency%2CPurchasingGroup%2CPurchasingGroupName&$top=5&$orderby=PurOrdNetAmountInDisplayCrcy%20desc&$format=json&$top=5&$inlinecount=allpages",
+                      "request/headers": {
+                        "Authorization": "Bearer @{triggerBody()['text']}",
+                        "Accept": "application/json"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Parse_JSON_2": {
+                  "runAfter": {
+                    "Invoke_an_HTTP_request_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@body('Invoke_an_HTTP_request_2')",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "d": {
+                          "type": "object",
+                          "properties": {
+                            "__count": {
+                              "type": "string"
+                            },
+                            "results": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "__metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "uri": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "PurchasingGroup": {
+                                    "type": "string"
+                                  },
+                                  "PurchasingGroupName": {
+                                    "type": "string"
+                                  },
+                                  "MaterialGroup": {
+                                    "type": "string"
+                                  },
+                                  "MaterialGroupName": {
+                                    "type": "string"
+                                  },
+                                  "DisplayCurrency": {
+                                    "type": "string"
+                                  },
+                                  "PurOrdNetAmountInDisplayCrcy": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "__metadata",
+                                  "PurchasingGroup",
+                                  "PurchasingGroupName",
+                                  "MaterialGroup",
+                                  "MaterialGroupName",
+                                  "DisplayCurrency",
+                                  "PurOrdNetAmountInDisplayCrcy"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Apply_to_each_2": {
+                  "foreach": "@body('Parse_JSON_2')?['d']?['results']",
+                  "actions": {
+                    "Compose_2": {
+                      "runAfter": {},
+                      "type": "Compose",
+                      "inputs": "\nPurchasing Group  is @{items('Apply_to_each_2')?['PurchasingGroup']} (\n@{items('Apply_to_each_2')?['PurchasingGroupName']} )\n\nMaterial Group is @{items('Apply_to_each_2')?['MaterialGroup']} ( @{items('Apply_to_each_2')?['MaterialGroupName']} )\n\nPO Net Amount is @{items('Apply_to_each_2')?['PurOrdNetAmountInDisplayCrcy']}\n___________________________________________________\n"
+                    },
+                    "Append_to_string_variable_2": {
+                      "runAfter": {
+                        "Compose_2": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "AppendToStringVariable",
+                      "inputs": {
+                        "name": "result_set",
+                        "value": "@outputs('Compose_2')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "Foreach"
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {}
+          },
+          "expression": "@triggerBody()['text_2']",
+          "metadata": {
+            "operationMetadataId": "51a32d3e-2058-45a0-8c13-bc6d6a190144"
+          },
+          "type": "Switch"
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "1799c317-2fc2-4895-b61b-a2cf4de70902"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "result_set",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}

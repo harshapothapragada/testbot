@@ -1,0 +1,253 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_webcontents_1": {
+        "runtimeSource": "embedded",
+        "connection": {},
+        "api": {
+          "name": "shared_webcontents"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "0cb4613a-d88f-4349-a2cf-fb104a201bab"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "token",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "duration",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f3c5ad54-8b00-49c1-a0bf-64ba9f42c655"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "response": "@variables('result_set')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "title": "response",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Invoke_an_HTTP_request": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "51a14b7a-68d5-4bee-b7bc-18a90d8f1c91"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_webcontents_1",
+              "operationId": "InvokeHttp",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+            },
+            "parameters": {
+              "request/method": "GET",
+              "request/url": "/sap/opu/odata/sap/C_SALESVOLUMEANALYTICSQRY_CDS/C_SALESVOLUMEANALYTICSQRY(P_DisplayCurrency='USD',P_ExchangeRateType='M')/Results?&$skip=0&$top=100&$orderby=SlsProfitMargNetAmtInDspCrcy desc&$select=BillingDocDateYearMonth,BillingDocDateYearMonth_T,SlsProfitMargNetAmtInDspCrcy,SlsProfitMargNetAmtInDspCrcy_F,SlsProfitMargNetAmtInDspCrcy_E,CustCrdtMemoNetAmtInDspCrcy,CustCrdtMemoNetAmtInDspCrcy_F,CustCrdtMemoNetAmtInDspCrcy_E&$filter=(BillingDocDateYearMonth eq '@{triggerBody()['text_1']}' )&$format=json",
+              "request/headers": {
+                "Authorization": "Bearer @{triggerBody()['text']}",
+                "Accept": "application/json"
+              }
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Parse_JSON": {
+          "runAfter": {
+            "Invoke_an_HTTP_request": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f10b7540-f4fa-4add-a5c2-4ceb2c112325"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('Invoke_an_HTTP_request')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "d": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "__metadata": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "uri": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "BillingDocDateYearMonth": {
+                            "type": "string"
+                          },
+                          "BillingDocDateYearMonth_T": {
+                            "type": "string"
+                          },
+                          "SlsProfitMargNetAmtInDspCrcy": {
+                            "type": "string"
+                          },
+                          "SlsProfitMargNetAmtInDspCrcy_F": {
+                            "type": "string"
+                          },
+                          "SlsProfitMargNetAmtInDspCrcy_E": {
+                            "type": "string"
+                          },
+                          "CustCrdtMemoNetAmtInDspCrcy": {
+                            "type": "string"
+                          },
+                          "CustCrdtMemoNetAmtInDspCrcy_F": {
+                            "type": "string"
+                          },
+                          "CustCrdtMemoNetAmtInDspCrcy_E": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "__metadata",
+                          "BillingDocDateYearMonth",
+                          "BillingDocDateYearMonth_T",
+                          "SlsProfitMargNetAmtInDspCrcy",
+                          "SlsProfitMargNetAmtInDspCrcy_F",
+                          "SlsProfitMargNetAmtInDspCrcy_E",
+                          "CustCrdtMemoNetAmtInDspCrcy",
+                          "CustCrdtMemoNetAmtInDspCrcy_F",
+                          "CustCrdtMemoNetAmtInDspCrcy_E"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@body('Parse_JSON')?['d']?['results']",
+          "actions": {
+            "Compose": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "c65693ae-b56b-4a6d-b44d-afbe19e74ea0"
+              },
+              "type": "Compose",
+              "inputs": "@items('Apply_to_each')?['SlsProfitMargNetAmtInDspCrcy_F']"
+            },
+            "Append_to_string_variable": {
+              "runAfter": {
+                "Compose": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "45069a1c-f108-404e-9a99-5062c35d026f"
+              },
+              "type": "AppendToStringVariable",
+              "inputs": {
+                "name": "result_set",
+                "value": "@{outputs('Compose')}@{items('Apply_to_each')?['CustCrdtMemoNetAmtInDspCrcy_F']}"
+              }
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "47ca879a-3c47-44b9-a715-4c6644812376"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable": {
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6eeaa81a-c3e1-449b-9f5c-859f813c055e"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "result_set",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}

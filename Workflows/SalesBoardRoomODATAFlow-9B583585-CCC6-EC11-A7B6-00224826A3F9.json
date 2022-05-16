@@ -1,0 +1,672 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_webcontents_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedwebcontents_0b60e"
+        },
+        "api": {
+          "name": "shared_webcontents"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "8b68d9ab-c9aa-4493-9d8d-2ebf2c917839"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "token",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "CustNo",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "DesiredDate",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_3": {
+                  "title": "flow",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_2",
+                "text_3"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Switch": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "20eef0b0-8508-44fd-9991-c27cb51fa970"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "response": "@variables('result_set')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "title": "response",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "cf291c72-5ad5-4c65-935f-0d4ec3ea6a1b"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "result_set",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Switch": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Case": {
+              "case": "Orders by a customer",
+              "actions": {
+                "No._of_orders_OData_Call": {
+                  "runAfter": {},
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_webcontents_1",
+                      "operationId": "InvokeHttp",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                    },
+                    "parameters": {
+                      "request/method": "GET",
+                      "request/url": "/sap/opu/odata/sap/ZC_OTC_SALES_ORDER_QTY_SRV/ZC_OTC_SALES_ORDER_QTY?sap-client=505&$select=CreationDate%2CRequestedDeliveryDate%2COrderQuantity%2CAllocatedQuantity%2CShippedQuantity%2CPendingQuantity%2CInvoicedQuantity%2CFixedQuantity%2COpenForReleaseCheckQuanity%2CHoldQuantity%2CDeliveredQuantity%2CConfirmedQuantity%2CUnConfirmedQuantity%2CFixedReservedQuantity%2CCancelledQuantity%2COpenContractQunatity%2CCalledOffQuantity%2CSoldToParty%2CCustomerName%2CSoldToParty&$filter=SoldToParty%20eq%20%27@{triggerBody()['text_1']}%27&$inlinecount=allpages&$format=json",
+                      "request/headers": {
+                        "Authorization": "Bearer @{triggerBody()['text']}",
+                        "Accept": "application/json"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Parse_JSON": {
+                  "runAfter": {
+                    "No._of_orders_OData_Call": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@body('No._of_orders_OData_Call')",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "d": {
+                          "type": "object",
+                          "properties": {
+                            "__count": {
+                              "type": "string"
+                            },
+                            "results": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "__metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "uri": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "CreationDate": {
+                                    "type": "string"
+                                  },
+                                  "SoldToParty": {
+                                    "type": "string"
+                                  },
+                                  "CustomerName": {
+                                    "type": "string"
+                                  },
+                                  "RequestedDeliveryDate": {
+                                    "type": "string"
+                                  },
+                                  "OrderQuantity": {
+                                    "type": "string"
+                                  },
+                                  "AllocatedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "ShippedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "PendingQuantity": {
+                                    "type": "string"
+                                  },
+                                  "FixedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "OpenForReleaseCheckQuanity": {
+                                    "type": "string"
+                                  },
+                                  "HoldQuantity": {
+                                    "type": "string"
+                                  },
+                                  "DeliveredQuantity": {
+                                    "type": "string"
+                                  },
+                                  "ConfirmedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "UnConfirmedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "FixedReservedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "CancelledQuantity": {
+                                    "type": "string"
+                                  },
+                                  "OpenContractQunatity": {
+                                    "type": "string"
+                                  },
+                                  "CalledOffQuantity": {
+                                    "type": "string"
+                                  },
+                                  "InvoicedQuantity": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "__metadata",
+                                  "CreationDate",
+                                  "SoldToParty",
+                                  "CustomerName",
+                                  "RequestedDeliveryDate",
+                                  "OrderQuantity",
+                                  "AllocatedQuantity",
+                                  "ShippedQuantity",
+                                  "PendingQuantity",
+                                  "FixedQuantity",
+                                  "OpenForReleaseCheckQuanity",
+                                  "HoldQuantity",
+                                  "DeliveredQuantity",
+                                  "ConfirmedQuantity",
+                                  "UnConfirmedQuantity",
+                                  "FixedReservedQuantity",
+                                  "CancelledQuantity",
+                                  "OpenContractQunatity",
+                                  "CalledOffQuantity",
+                                  "InvoicedQuantity"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Append_to_string_variable": {
+                  "runAfter": {
+                    "Parse_JSON": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "AppendToStringVariable",
+                  "inputs": {
+                    "name": "result_set",
+                    "value": "@body('Parse_JSON')?['d']?['__count']"
+                  }
+                }
+              }
+            },
+            "Case_2": {
+              "case": "Orders created today for a customer",
+              "actions": {
+                "Orders_created_today_OData_Call": {
+                  "runAfter": {},
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_webcontents_1",
+                      "operationId": "InvokeHttp",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                    },
+                    "parameters": {
+                      "request/method": "GET",
+                      "request/url": "/sap/opu/odata/sap/ZC_OTC_SALES_ORDER_QTY_SRV/ZC_OTC_SALES_ORDER_QTY?sap-client=505&$select=SalesOrderItem,CreationDate%2CRequestedDeliveryDate%2COrderQuantity%2CAllocatedQuantity%2CShippedQuantity%2CPendingQuantity%2CInvoicedQuantity%2CFixedQuantity%2COpenForReleaseCheckQuanity%2CHoldQuantity%2CDeliveredQuantity%2CConfirmedQuantity%2CUnConfirmedQuantity%2CFixedReservedQuantity%2CCancelledQuantity%2COpenContractQunatity%2CCalledOffQuantity%2CSoldToParty%2CCustomerName%2CSoldToParty,SalesOrder&$filter=(CreationDate%20eq%20datetime%27@{triggerBody()['text_2']}T00%3a00%3a00%27%20)%20and%20SoldToParty%20eq%20%27@{triggerBody()['text_1']}%27&$format=json",
+                      "request/headers": {
+                        "Authorization": "Bearer @{triggerBody()['text']}",
+                        "Accept": "application/json"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Parse_JSON_2": {
+                  "runAfter": {
+                    "Orders_created_today_OData_Call": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@body('Orders_created_today_OData_Call')",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "d": {
+                          "type": "object",
+                          "properties": {
+                            "results": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "__metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "uri": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "SalesOrder": {
+                                    "type": "string"
+                                  },
+                                  "SalesOrderItem": {
+                                    "type": "string"
+                                  },
+                                  "CreationDate": {
+                                    "type": "string"
+                                  },
+                                  "SoldToParty": {
+                                    "type": "string"
+                                  },
+                                  "CustomerName": {
+                                    "type": "string"
+                                  },
+                                  "RequestedDeliveryDate": {
+                                    "type": "string"
+                                  },
+                                  "OrderQuantity": {
+                                    "type": "string"
+                                  },
+                                  "AllocatedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "ShippedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "PendingQuantity": {
+                                    "type": "string"
+                                  },
+                                  "FixedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "OpenForReleaseCheckQuanity": {
+                                    "type": "string"
+                                  },
+                                  "HoldQuantity": {
+                                    "type": "string"
+                                  },
+                                  "DeliveredQuantity": {
+                                    "type": "string"
+                                  },
+                                  "ConfirmedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "UnConfirmedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "FixedReservedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "CancelledQuantity": {
+                                    "type": "string"
+                                  },
+                                  "OpenContractQunatity": {
+                                    "type": "string"
+                                  },
+                                  "CalledOffQuantity": {
+                                    "type": "string"
+                                  },
+                                  "InvoicedQuantity": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "__metadata",
+                                  "SalesOrder",
+                                  "SalesOrderItem",
+                                  "CreationDate",
+                                  "SoldToParty",
+                                  "CustomerName",
+                                  "RequestedDeliveryDate",
+                                  "OrderQuantity",
+                                  "AllocatedQuantity",
+                                  "ShippedQuantity",
+                                  "PendingQuantity",
+                                  "FixedQuantity",
+                                  "OpenForReleaseCheckQuanity",
+                                  "HoldQuantity",
+                                  "DeliveredQuantity",
+                                  "ConfirmedQuantity",
+                                  "UnConfirmedQuantity",
+                                  "FixedReservedQuantity",
+                                  "CancelledQuantity",
+                                  "OpenContractQunatity",
+                                  "CalledOffQuantity",
+                                  "InvoicedQuantity"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Apply_to_each": {
+                  "foreach": "@body('Parse_JSON_2')?['d']?['results']",
+                  "actions": {
+                    "Compose": {
+                      "runAfter": {},
+                      "type": "Compose",
+                      "inputs": "@first(split(last(split(items('Apply_to_each')?['RequestedDeliveryDate'], '(')),')'))"
+                    },
+                    "Append_to_string_variable_3": {
+                      "runAfter": {
+                        "Compose_3": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "AppendToStringVariable",
+                      "inputs": {
+                        "name": "result_set",
+                        "value": " @{outputs('Compose_3')}"
+                      }
+                    },
+                    "Compose_3": {
+                      "runAfter": {
+                        "Compose": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "Compose",
+                      "inputs": "\nOrder Quantity is @{items('Apply_to_each')?['OrderQuantity']}\n\nRequested Delivery Date is @{addseconds('1970-1-1', Div(int(outputs('Compose')),1000),'yyyy-MM-dd')}\n\n\n\n"
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "Foreach"
+                }
+              }
+            },
+            "Case_3": {
+              "case": "Confirmed quantity for delivery ",
+              "actions": {
+                "Quantity_confirmed_and_to_be_delivered_OData_Flow": {
+                  "runAfter": {},
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_webcontents_1",
+                      "operationId": "InvokeHttp",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                    },
+                    "parameters": {
+                      "request/method": "GET",
+                      "request/url": "/sap/opu/odata/sap/ZC_OTC_SALES_ORDER_QTY_SRV/ZC_OTC_SALES_ORDER_QTY?sap-client=505&$select=CreationDate%2CRequestedDeliveryDate%2COrderQuantity%2CAllocatedQuantity%2CShippedQuantity%2CPendingQuantity%2CInvoicedQuantity%2CFixedQuantity%2COpenForReleaseCheckQuanity%2CHoldQuantity%2CDeliveredQuantity%2CConfirmedQuantity%2CUnConfirmedQuantity%2CFixedReservedQuantity%2CCancelledQuantity%2COpenContractQunatity%2CCalledOffQuantity%2CSoldToParty%2CCustomerName%2CSoldToParty&$filter=RequestedDeliveryDate%20eq%20datetime%27@{triggerBody()['text_2']}T00%3a00%3a00%27%20and%20SoldToParty%20eq%20%27@{triggerBody()['text_1']}%27&$format=json",
+                      "request/headers": {
+                        "Authorization": "Bearer @{triggerBody()['text']}",
+                        "Accept": "application/json"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Parse_JSON_3": {
+                  "runAfter": {
+                    "Quantity_confirmed_and_to_be_delivered_OData_Flow": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@body('Quantity_confirmed_and_to_be_delivered_OData_Flow')",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "d": {
+                          "type": "object",
+                          "properties": {
+                            "results": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "__metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "uri": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "CreationDate": {
+                                    "type": "string"
+                                  },
+                                  "SoldToParty": {
+                                    "type": "string"
+                                  },
+                                  "CustomerName": {
+                                    "type": "string"
+                                  },
+                                  "RequestedDeliveryDate": {
+                                    "type": "string"
+                                  },
+                                  "OrderQuantity": {
+                                    "type": "string"
+                                  },
+                                  "AllocatedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "ShippedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "PendingQuantity": {
+                                    "type": "string"
+                                  },
+                                  "FixedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "OpenForReleaseCheckQuanity": {
+                                    "type": "string"
+                                  },
+                                  "HoldQuantity": {
+                                    "type": "string"
+                                  },
+                                  "DeliveredQuantity": {
+                                    "type": "string"
+                                  },
+                                  "ConfirmedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "UnConfirmedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "FixedReservedQuantity": {
+                                    "type": "string"
+                                  },
+                                  "CancelledQuantity": {
+                                    "type": "string"
+                                  },
+                                  "OpenContractQunatity": {
+                                    "type": "string"
+                                  },
+                                  "CalledOffQuantity": {
+                                    "type": "string"
+                                  },
+                                  "InvoicedQuantity": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "__metadata",
+                                  "CreationDate",
+                                  "SoldToParty",
+                                  "CustomerName",
+                                  "RequestedDeliveryDate",
+                                  "OrderQuantity",
+                                  "AllocatedQuantity",
+                                  "ShippedQuantity",
+                                  "PendingQuantity",
+                                  "FixedQuantity",
+                                  "OpenForReleaseCheckQuanity",
+                                  "HoldQuantity",
+                                  "DeliveredQuantity",
+                                  "ConfirmedQuantity",
+                                  "UnConfirmedQuantity",
+                                  "FixedReservedQuantity",
+                                  "CancelledQuantity",
+                                  "OpenContractQunatity",
+                                  "CalledOffQuantity",
+                                  "InvoicedQuantity"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Apply_to_each_2": {
+                  "foreach": "@body('Parse_JSON_3')?['d']?['results']",
+                  "actions": {
+                    "Compose_2": {
+                      "runAfter": {},
+                      "type": "Compose",
+                      "inputs": "\nOrdered Quantity is  @{items('Apply_to_each_2')?['OrderQuantity']}\n\nDelivered Quantity is @{items('Apply_to_each_2')?['DeliveredQuantity']}\n\nConfirmed Quantity is  @{items('Apply_to_each_2')?['ConfirmedQuantity']}\n\n________________________________________"
+                    },
+                    "Append_to_string_variable_2": {
+                      "runAfter": {
+                        "Compose_2": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "AppendToStringVariable",
+                      "inputs": {
+                        "name": "result_set",
+                        "value": "@outputs('Compose_2')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON_3": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "Foreach"
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {}
+          },
+          "expression": "@triggerBody()['text_3']",
+          "metadata": {
+            "operationMetadataId": "459d5d31-2b09-4c93-8f4a-b29f17c48f6d"
+          },
+          "type": "Switch"
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}

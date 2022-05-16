@@ -1,0 +1,194 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "Lovely",
+        "Great Job",
+        "Clever",
+        "Beautiful",
+        "You're A Champ",
+        "I'm Impressed",
+        "You're Super",
+        "Wow",
+        "Fantastic",
+        "Exceptional",
+        "Bravo",
+        "Marvelous",
+        "You've Outdone Yourself",
+        "Outstanding",
+        "Terrific",
+        "Way To Go",
+        "Unbelievable Work",
+        "Excellent",
+        "Superb",
+        "Phenomenal",
+        "fantastic",
+        "That's Great",
+        "You are Cool",
+        "This is Amazing",
+        "You're Smart",
+        "Wow Just Brilliant",
+        "Its Wonderful",
+        "You are Awesome"
+      ],
+      "dialogId": "new_topic_de7317d131464b8c838526831fb6ec33",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_de7317d131464b8c838526831fb6ec33",
+      "displayName": "Positive Adjectives",
+      "createdTime": "2022-05-02T08:24:29.4252247Z",
+      "updatedTime": "2022-05-06T11:41:49.8933495Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "ebdd8add-44e6-4267-b7d2-cb33d5d8362b",
+      "messageNodes": [
+        {
+          "botMessageId": "15a8b111-59c8-45c1-8e35-0011c00a890d",
+          "nodeType": "BotMessageNode",
+          "id": "a9f752e0-29a0-4e06-8508-db8730cc409f",
+          "defaultTargetNodeId": "ed539c70-e9c6-4cb9-be94-40edc9afc139"
+        },
+        {
+          "botMessageId": "1cdc1f14-4b02-4df3-b4b4-8179380359cf",
+          "nodeType": "BotMessageNode",
+          "id": "ed539c70-e9c6-4cb9-be94-40edc9afc139",
+          "defaultTargetNodeId": "200e24f4-fb17-4efc-8703-b5f927f703f4"
+        }
+      ],
+      "actionNodes": [
+        {
+          "contextVariableId": "305e946c-7b18-4f1a-ba1a-7e527366fc95",
+          "nodeType": "ActionNode",
+          "outputExpressionVariableIds": [
+            "6d7b00d8-3ec7-4e8e-a10c-d4f625d5f005"
+          ],
+          "id": "ebdd8add-44e6-4267-b7d2-cb33d5d8362b",
+          "defaultTargetNodeId": "a9f752e0-29a0-4e06-8508-db8730cc409f"
+        }
+      ],
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_37ca5af80c774e0187928cc81ca8ea7a_8a4964498f83424bb3a86295bf7d0952_startover",
+          "nodeType": "DialogChangeNode",
+          "id": "200e24f4-fb17-4efc-8703-b5f927f703f4"
+        }
+      ],
+      "id": "new_topic_de7317d131464b8c838526831fb6ec33",
+      "displayName": "Untitled",
+      "createdTime": "2022-05-02T08:24:29.4252247Z",
+      "updatedTime": "2022-05-06T11:41:49.8933495Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "{6d7b00d8-3ec7-4e8e-a10c-d4f625d5f005}"
+        }
+      },
+      "id": "15a8b111-59c8-45c1-8e35-0011c00a890d",
+      "createdTime": "2022-05-05T12:42:55.978Z",
+      "updatedTime": "2022-05-05T12:42:55.978Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Let's start again, shall we!"
+        }
+      },
+      "id": "1cdc1f14-4b02-4df3-b4b4-8179380359cf",
+      "createdTime": "2022-05-06T11:41:03.527Z",
+      "updatedTime": "2022-05-06T11:41:03.527Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    }
+  ],
+  "actionDefinitions": [
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "1c242cc2-70cc-ec11-a7b5-00224834a45c",
+        "title": "random texts",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "outputParameters": [
+          {
+            "name": "selectedtext",
+            "id": "selectedtext",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2022-05-05T12:42:08Z",
+        "isEnabled": true,
+        "lastModifiedTime": "2022-05-05T12:42:15Z",
+        "versionNumber": 20055178
+      },
+      "id": "3cc77e27-0b81-4e0b-8d01-1023cc1ea5f9",
+      "displayName": "random texts",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2022-05-05T12:42:43.046Z",
+      "updatedTime": "2022-05-05T12:42:43.046Z"
+    }
+  ],
+  "contextVariables": [
+    {
+      "customTypeId": "eb2f25a6-d6a9-45e7-944f-95d5c17e7527",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "3cc77e27-0b81-4e0b-8d01-1023cc1ea5f9",
+      "isGlobal": false,
+      "id": "305e946c-7b18-4f1a-ba1a-7e527366fc95",
+      "displayName": "",
+      "createdTime": "2022-05-05T12:42:43.047Z",
+      "updatedTime": "2022-05-06T11:41:49.8933495Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('305e946c-7b18-4f1a-ba1a-7e527366fc95')['selectedtext']",
+      "isGlobal": false,
+      "id": "6d7b00d8-3ec7-4e8e-a10c-d4f625d5f005",
+      "displayName": "selectedtext",
+      "createdTime": "2022-05-05T12:42:43.048Z",
+      "updatedTime": "2022-05-06T11:41:49.8933495Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ],
+  "jsonTypes": [
+    {
+      "customTypeSchema": "Json",
+      "id": "eb2f25a6-d6a9-45e7-944f-95d5c17e7527",
+      "displayName": "Response Json Type for Flow - random texts",
+      "createdTime": "2022-05-05T12:42:43.047Z",
+      "updatedTime": "2022-05-05T12:42:43.047Z"
+    }
+  ]
+}

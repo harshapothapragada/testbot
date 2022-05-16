@@ -1,0 +1,445 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "overdue po items"
+      ],
+      "dialogId": "new_topic_8cb185c8161c40c38cdfa30214e64e3a",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_8cb185c8161c40c38cdfa30214e64e3a",
+      "displayName": "Overdue PO Items",
+      "createdTime": "2022-04-27T07:42:07.8949221Z",
+      "updatedTime": "2022-05-04T12:32:19.1606093Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    }
+  ],
+  "namedEntities": [
+    {
+      "id": "0a94fea4-b134-4ad1-877f-57deaeb5f2b4",
+      "displayName": "Start Over"
+    },
+    {
+      "id": "dda0632b-2cf4-475b-b775-3206e5322e77",
+      "displayName": "Previous quarter till date"
+    },
+    {
+      "id": "702accc4-a9a5-4ca9-911e-48f0cb2ee345",
+      "displayName": "Next 90 days"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "4d871c51-e83a-4867-a679-f76ac79afcd2",
+      "messageNodes": [
+        {
+          "botMessageId": "5d98a44d-15a0-4ee1-b964-c5560fda9abb",
+          "nodeType": "BotMessageNode",
+          "id": "7b83d506-c357-4dec-a280-798bc82c3a90",
+          "defaultTargetNodeId": "65008327-9cff-4efd-af48-4273d6450b0a"
+        },
+        {
+          "botMessageId": "3ebfc9c2-3976-4be3-8966-860669fa2401",
+          "nodeType": "BotMessageNode",
+          "id": "49613fd3-9e9a-4cad-92ab-e198b8429b94",
+          "defaultTargetNodeId": "04109f4e-0f89-4fe5-9128-2c4c77e9ecfc"
+        },
+        {
+          "botMessageId": "512330ae-baad-40be-9523-5b6a728a216c",
+          "nodeType": "BotMessageNode",
+          "id": "8b165fcf-627c-49ad-acc7-1d3e30483187",
+          "defaultTargetNodeId": "04109f4e-0f89-4fe5-9128-2c4c77e9ecfc"
+        }
+      ],
+      "actionNodes": [
+        {
+          "contextVariableId": "5354d072-df98-43e8-a71c-2e7eafbb09e3",
+          "nodeType": "ActionNode",
+          "inputParameterVariableIdMap": {
+            "text": "{a947718b-ab6d-44a8-9a58-9ecd3f3af86c}",
+            "text_1": "ZMCC_OVERDUEPO_CDS_0001"
+          },
+          "outputExpressionVariableIds": [
+            "32a99fb5-18e7-4a60-b09a-f3c33d7be714"
+          ],
+          "id": "4be82080-dc2d-4cba-be2f-0512e8acdab2",
+          "defaultTargetNodeId": "3f3b79ae-83bc-42ee-9b92-1f57dc09d7f7"
+        },
+        {
+          "contextVariableId": "6258ae0f-88ac-4ab6-a773-f1b723263df5",
+          "nodeType": "ActionNode",
+          "inputParameterVariableIdMap": {
+            "text": "{32a99fb5-18e7-4a60-b09a-f3c33d7be714}",
+            "text_1": "{dabc1de6-3117-4c74-a736-aebb858f19ef}"
+          },
+          "outputExpressionVariableIds": [
+            "c0be3197-6b3d-4fca-9bf7-de746fa64bd8"
+          ],
+          "id": "4eb8fb7f-7edc-49b4-a337-81d4b7b4637a",
+          "routes": [
+            {
+              "expression": "@or(equals(parameters('c0be3197-6b3d-4fca-9bf7-de746fa64bd8'), ''), equals(parameters('c0be3197-6b3d-4fca-9bf7-de746fa64bd8'), null))",
+              "targetNodeId": "8b165fcf-627c-49ad-acc7-1d3e30483187"
+            }
+          ],
+          "defaultTargetNodeId": "49613fd3-9e9a-4cad-92ab-e198b8429b94"
+        }
+      ],
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_37ca5af80c774e0187928cc81ca8ea7a_aeabea4d071f415c8c107e1cb7af5424_assumedsuccess",
+          "nodeType": "DialogChangeNode",
+          "id": "04109f4e-0f89-4fe5-9128-2c4c77e9ecfc"
+        },
+        {
+          "targetDialogId": "new_topic_37ca5af80c774e0187928cc81ca8ea7a_8a4964498f83424bb3a86295bf7d0952_startover",
+          "nodeType": "DialogChangeNode",
+          "id": "beed98e1-1363-46b3-844d-dbd251a14f4f"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "25507c48-dd8a-42b7-95e8-90461ef9d6ec",
+          "nodeType": "QuestionNode",
+          "id": "65008327-9cff-4efd-af48-4273d6450b0a",
+          "routes": [
+            {
+              "expression": "@equals(parameters('25507c48-dd8a-42b7-95e8-90461ef9d6ec'), '0a94fea4-b134-4ad1-877f-57deaeb5f2b4')",
+              "targetNodeId": "beed98e1-1363-46b3-844d-dbd251a14f4f"
+            }
+          ]
+        },
+        {
+          "contextVariableId": "dabc1de6-3117-4c74-a736-aebb858f19ef",
+          "nodeType": "QuestionNode",
+          "id": "3f3b79ae-83bc-42ee-9b92-1f57dc09d7f7",
+          "routes": [
+            {
+              "expression": "@equals(parameters('dabc1de6-3117-4c74-a736-aebb858f19ef'), 'dda0632b-2cf4-475b-b775-3206e5322e77')",
+              "targetNodeId": "4eb8fb7f-7edc-49b4-a337-81d4b7b4637a"
+            },
+            {
+              "expression": "@equals(parameters('dabc1de6-3117-4c74-a736-aebb858f19ef'), '702accc4-a9a5-4ca9-911e-48f0cb2ee345')",
+              "targetNodeId": "4eb8fb7f-7edc-49b4-a337-81d4b7b4637a"
+            }
+          ],
+          "defaultTargetNodeId": "3f3b79ae-83bc-42ee-9b92-1f57dc09d7f7"
+        }
+      ],
+      "loginNodes": [
+        {
+          "userTokenVariableId": "a947718b-ab6d-44a8-9a58-9ecd3f3af86c",
+          "nodeType": "LoginNode",
+          "id": "4d871c51-e83a-4867-a679-f76ac79afcd2",
+          "routes": [
+            {
+              "expression": "@equals(parameters('a79b14f0-656b-4d39-96db-2abf9ec3c8e3'), true)",
+              "targetNodeId": "4be82080-dc2d-4cba-be2f-0512e8acdab2"
+            }
+          ],
+          "defaultTargetNodeId": "7b83d506-c357-4dec-a280-798bc82c3a90"
+        }
+      ],
+      "id": "new_topic_8cb185c8161c40c38cdfa30214e64e3a",
+      "displayName": "Untitled",
+      "createdTime": "2022-04-27T07:42:07.8949221Z",
+      "updatedTime": "2022-05-04T12:32:19.1606093Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "What would you like to do next?"
+        }
+      },
+      "id": "e6aca9cf-fca0-4565-bbec-3f7615a0d5d0",
+      "createdTime": "2022-04-27T07:42:03.353Z",
+      "updatedTime": "2022-04-27T07:42:03.353Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Choose Overdue Duration"
+        }
+      },
+      "id": "49b33ce5-a982-4714-8695-934be894d4d2",
+      "createdTime": "2022-04-27T08:04:45.13Z",
+      "updatedTime": "2022-04-27T08:04:45.13Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "There was an issue logging you in."
+        }
+      },
+      "id": "5d98a44d-15a0-4ee1-b964-c5560fda9abb",
+      "createdTime": "2022-04-27T07:42:03.354Z",
+      "updatedTime": "2022-04-27T07:42:03.354Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Number of Overdue items per Supplier for {dabc1de6-3117-4c74-a736-aebb858f19ef} is as follows:\n\n{c0be3197-6b3d-4fca-9bf7-de746fa64bd8}"
+        }
+      },
+      "id": "3ebfc9c2-3976-4be3-8966-860669fa2401",
+      "createdTime": "2022-04-27T08:09:54.818Z",
+      "updatedTime": "2022-04-27T08:09:54.818Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Sorry, No data available for the selected duration :  \"{dabc1de6-3117-4c74-a736-aebb858f19ef}\""
+        }
+      },
+      "id": "512330ae-baad-40be-9523-5b6a728a216c",
+      "createdTime": "2022-05-04T11:49:02.775Z",
+      "updatedTime": "2022-05-04T11:49:02.775Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    }
+  ],
+  "actionDefinitions": [
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "{\"text\":\"{a947718b-ab6d-44a8-9a58-9ecd3f3af86c}\",\"text_1\":\"ZMCC_OVERDUEPO_CDS_0001\"}",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "4cd5781b-6ab1-ec11-9840-000d3a993196",
+        "title": "solarbot-exchange-token-flow",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "inputParameters": [
+          {
+            "name": "AADJWT",
+            "id": "text",
+            "type": "String",
+            "optional": false
+          },
+          {
+            "name": "ServiceScope",
+            "id": "text_1",
+            "type": "String",
+            "optional": false
+          }
+        ],
+        "outputParameters": [
+          {
+            "name": "SAPToken",
+            "id": "saptoken",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2022-04-01T03:16:24Z",
+        "isEnabled": true,
+        "lastModifiedTime": "2022-04-26T10:45:20Z",
+        "versionNumber": 19800012
+      },
+      "id": "1ba7cebc-c7d5-4260-9ebc-d5dfee178775",
+      "displayName": "solarbot-exchange-token-flow",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2022-04-27T07:43:38.954Z",
+      "updatedTime": "2022-04-27T07:43:38.954Z"
+    },
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "{\"text\":\"{32a99fb5-18e7-4a60-b09a-f3c33d7be714}\",\"text_1\":\"{dabc1de6-3117-4c74-a736-aebb858f19ef}\"}",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "17775bcb-fec5-ec11-a7b6-00224826a3f9",
+        "title": "Overdue PO Items ODATA Flow",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "inputParameters": [
+          {
+            "name": "token",
+            "id": "text",
+            "type": "String",
+            "optional": false
+          },
+          {
+            "name": "overdue_duration",
+            "id": "text_1",
+            "type": "String",
+            "optional": false
+          }
+        ],
+        "outputParameters": [
+          {
+            "name": "response",
+            "id": "response",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2022-04-27T07:51:08Z",
+        "isEnabled": false,
+        "lastModifiedTime": "2022-04-27T08:02:45Z",
+        "versionNumber": 19805625
+      },
+      "id": "9f009089-ed08-4f6e-87b6-2a1b5e9b0783",
+      "displayName": "Overdue PO Items ODATA Flow",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2022-04-27T08:09:08.335Z",
+      "updatedTime": "2022-04-27T08:09:08.335Z"
+    }
+  ],
+  "contextVariables": [
+    {
+      "systemType": "String",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "0a94fea4-b134-4ad1-877f-57deaeb5f2b4"
+      ],
+      "messages": {
+        "GetValue": [
+          "e6aca9cf-fca0-4565-bbec-3f7615a0d5d0"
+        ]
+      },
+      "isGlobal": false,
+      "id": "25507c48-dd8a-42b7-95e8-90461ef9d6ec",
+      "displayName": "User choice",
+      "createdTime": "2022-04-27T07:42:07.8949221Z",
+      "updatedTime": "2022-05-04T12:32:19.1606093Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "dda0632b-2cf4-475b-b775-3206e5322e77",
+        "702accc4-a9a5-4ca9-911e-48f0cb2ee345"
+      ],
+      "messages": {
+        "GetValue": [
+          "49b33ce5-a982-4714-8695-934be894d4d2"
+        ]
+      },
+      "isGlobal": false,
+      "id": "dabc1de6-3117-4c74-a736-aebb858f19ef",
+      "displayName": "overdue_duration",
+      "createdTime": "2022-04-27T08:04:45.13Z",
+      "updatedTime": "2022-05-04T12:32:19.1606093Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "customTypeId": "fe09af6b-28a2-4e11-8288-7c739521c6fd",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "1ba7cebc-c7d5-4260-9ebc-d5dfee178775",
+      "isGlobal": false,
+      "id": "5354d072-df98-43e8-a71c-2e7eafbb09e3",
+      "displayName": "",
+      "createdTime": "2022-04-27T07:43:38.954Z",
+      "updatedTime": "2022-05-04T12:32:19.1606093Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('5354d072-df98-43e8-a71c-2e7eafbb09e3')['saptoken']",
+      "isGlobal": false,
+      "id": "32a99fb5-18e7-4a60-b09a-f3c33d7be714",
+      "displayName": "SAPToken",
+      "createdTime": "2022-04-27T07:43:38.955Z",
+      "updatedTime": "2022-05-04T12:32:19.1606093Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "customTypeId": "9b9ce887-4dbf-48c0-a778-03df37209e81",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "9f009089-ed08-4f6e-87b6-2a1b5e9b0783",
+      "isGlobal": false,
+      "id": "6258ae0f-88ac-4ab6-a773-f1b723263df5",
+      "displayName": "",
+      "createdTime": "2022-04-27T08:09:08.336Z",
+      "updatedTime": "2022-05-04T12:32:19.1606093Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('6258ae0f-88ac-4ab6-a773-f1b723263df5')['response']",
+      "isGlobal": false,
+      "id": "c0be3197-6b3d-4fca-9bf7-de746fa64bd8",
+      "displayName": "response",
+      "createdTime": "2022-04-27T08:09:08.336Z",
+      "updatedTime": "2022-05-04T12:32:19.1606093Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    }
+  ],
+  "jsonTypes": [
+    {
+      "customTypeSchema": "Json",
+      "id": "fe09af6b-28a2-4e11-8288-7c739521c6fd",
+      "displayName": "Response Json Type for Flow - solarbot-exchange-token-flow",
+      "createdTime": "2022-04-27T07:43:38.954Z",
+      "updatedTime": "2022-04-27T07:43:38.954Z"
+    },
+    {
+      "customTypeSchema": "Json",
+      "id": "9b9ce887-4dbf-48c0-a778-03df37209e81",
+      "displayName": "Response Json Type for Flow - Overdue PO Items ODATA Flow",
+      "createdTime": "2022-04-27T08:09:08.336Z",
+      "updatedTime": "2022-04-27T08:09:08.336Z"
+    }
+  ]
+}

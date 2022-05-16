@@ -1,0 +1,87 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "4c9fe38f-2d8a-4266-8c4a-92fb7801899c"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e0e0bd12-ad0f-46a4-8b6d-3cc076446cc0"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "selectedtext": "@{variables('randomtext')[rand(0,length(variables('randomtext')))]}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "selectedtext": {
+                  "title": "selectedtext",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "617c105c-9800-4fd3-9aab-11483f33cdd9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "randomtext",
+                "type": "array",
+                "value": [
+                  "Thanks! You're awesome too!!",
+                  "Ahh, thank you so much!!",
+                  "Thanks! You Should Be Proud!",
+                  "Thanks! It's Everything I Hoped For!",
+                  "Thanks! How Thoughtful Of You!",
+                  "Thanks! You Made The Difference!",
+                  "Thanks! You're Amazing!"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}

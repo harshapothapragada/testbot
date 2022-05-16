@@ -1,0 +1,462 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "shortage report"
+      ],
+      "dialogId": "new_topic_a60be3d22d6644fdb73443b4f625b869",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_a60be3d22d6644fdb73443b4f625b869",
+      "displayName": "Shortage Report",
+      "createdTime": "2022-04-27T12:58:56.8005162Z",
+      "updatedTime": "2022-05-09T15:55:15.1032293Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    }
+  ],
+  "namedEntities": [
+    {
+      "id": "d84c39a1-b498-4ee3-abcc-e9254e683ca1",
+      "displayName": "Retry"
+    },
+    {
+      "id": "20db237e-ac8d-460e-9508-9ff13b48692e",
+      "displayName": "Talk to an agent"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "3670357b-d254-4384-b6db-4ca691940b8d",
+      "messageNodes": [
+        {
+          "botMessageId": "5eb73a38-770b-4a24-bbf6-108a462328bf",
+          "nodeType": "BotMessageNode",
+          "id": "d2c85dbb-a2f7-414e-90bc-cd4bd923d10c",
+          "defaultTargetNodeId": "c4eac8d8-c6a8-49ab-b89f-ffdc91110d7e"
+        },
+        {
+          "botMessageId": "5eb5728b-9a20-4258-aaa9-c35ac65f0dc4",
+          "nodeType": "BotMessageNode",
+          "id": "a8a81bd5-b955-4cac-aab6-3b39f953e5ce",
+          "defaultTargetNodeId": "b529d452-0c0c-4b00-b92d-22ac20794e30"
+        },
+        {
+          "botMessageId": "80505c0e-978b-4d2b-ae96-822f60bd5204",
+          "nodeType": "BotMessageNode",
+          "id": "0a7ab8a0-4596-477c-9523-fdf935752785"
+        }
+      ],
+      "actionNodes": [
+        {
+          "contextVariableId": "5a3bb191-a9e1-40a5-b014-5f9024f8a112",
+          "nodeType": "ActionNode",
+          "inputParameterVariableIdMap": {
+            "text": "{a947718b-ab6d-44a8-9a58-9ecd3f3af86c}",
+            "text_1": "ZGGW_PTP_RP20014_PO_SHORTAGE_SRV_0001"
+          },
+          "outputExpressionVariableIds": [
+            "fb58b162-b952-4a9e-a2bc-da425a672ad0"
+          ],
+          "id": "6dea2c86-95c0-499b-8c2e-3ad4df54eb7e",
+          "defaultTargetNodeId": "f00694e7-8238-4b34-b0a0-7e58bc21f1ef"
+        },
+        {
+          "contextVariableId": "c3d563f4-7e73-4964-a1b2-37047544f15d",
+          "nodeType": "ActionNode",
+          "inputParameterVariableIdMap": {
+            "text": "{fb58b162-b952-4a9e-a2bc-da425a672ad0}",
+            "text_1": "{eababb8d-dbd1-45bc-a31c-f999a64fc75e}",
+            "text_2": "{b9c8718b-d96a-4cb1-af3d-d7abbd7cecb0}"
+          },
+          "outputExpressionVariableIds": [
+            "1c7e9538-7aeb-4652-83eb-b68f97d7553c"
+          ],
+          "id": "428df381-1ddc-4cfc-8ce0-eed4bc227c76",
+          "routes": [
+            {
+              "expression": "@or(equals(parameters('1c7e9538-7aeb-4652-83eb-b68f97d7553c'), ''), equals(parameters('1c7e9538-7aeb-4652-83eb-b68f97d7553c'), null))",
+              "targetNodeId": "0a7ab8a0-4596-477c-9523-fdf935752785"
+            }
+          ],
+          "defaultTargetNodeId": "a8a81bd5-b955-4cac-aab6-3b39f953e5ce"
+        }
+      ],
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_37ca5af80c774e0187928cc81ca8ea7a_aeabea4d071f415c8c107e1cb7af5424_assumedsuccess",
+          "nodeType": "DialogChangeNode",
+          "id": "b529d452-0c0c-4b00-b92d-22ac20794e30"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "11b0f70a-fd21-4972-9c25-1f9c7433f02f",
+          "nodeType": "QuestionNode",
+          "id": "c4eac8d8-c6a8-49ab-b89f-ffdc91110d7e"
+        },
+        {
+          "contextVariableId": "b9c8718b-d96a-4cb1-af3d-d7abbd7cecb0",
+          "nodeType": "QuestionNode",
+          "id": "f00694e7-8238-4b34-b0a0-7e58bc21f1ef",
+          "defaultTargetNodeId": "e280b68b-6a27-4185-ad94-a6fb4ffd4bfb"
+        },
+        {
+          "contextVariableId": "eababb8d-dbd1-45bc-a31c-f999a64fc75e",
+          "nodeType": "QuestionNode",
+          "id": "e280b68b-6a27-4185-ad94-a6fb4ffd4bfb",
+          "defaultTargetNodeId": "428df381-1ddc-4cfc-8ce0-eed4bc227c76"
+        }
+      ],
+      "loginNodes": [
+        {
+          "userTokenVariableId": "a947718b-ab6d-44a8-9a58-9ecd3f3af86c",
+          "nodeType": "LoginNode",
+          "id": "3670357b-d254-4384-b6db-4ca691940b8d",
+          "routes": [
+            {
+              "expression": "@equals(parameters('a79b14f0-656b-4d39-96db-2abf9ec3c8e3'), true)",
+              "targetNodeId": "6dea2c86-95c0-499b-8c2e-3ad4df54eb7e"
+            }
+          ],
+          "defaultTargetNodeId": "d2c85dbb-a2f7-414e-90bc-cd4bd923d10c"
+        }
+      ],
+      "id": "new_topic_a60be3d22d6644fdb73443b4f625b869",
+      "displayName": "Untitled",
+      "createdTime": "2022-04-27T12:58:56.8005162Z",
+      "updatedTime": "2022-05-09T15:55:15.1032293Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "What would you like to do next?"
+        }
+      },
+      "id": "fff68c56-775f-4422-8465-b6d24843c924",
+      "createdTime": "2022-04-27T12:53:27.998Z",
+      "updatedTime": "2022-04-27T12:53:27.998Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Provide the Purchase Order Number for which report needs to be generated:\n\neg : 2100000028"
+        }
+      },
+      "id": "99ab1792-b59e-4dea-bb4d-2a6473499e4e",
+      "createdTime": "2022-05-02T11:48:20.518Z",
+      "updatedTime": "2022-05-02T11:48:20.518Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Provide Company Code for the Purchase Order chosen:\n\neg: 333 321"
+        }
+      },
+      "id": "48406f0c-0cfd-414c-bf2e-23f2a5185bbf",
+      "createdTime": "2022-05-02T11:51:21.564Z",
+      "updatedTime": "2022-05-02T11:51:21.564Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "There was an issue logging you in."
+        }
+      },
+      "id": "5eb73a38-770b-4a24-bbf6-108a462328bf",
+      "createdTime": "2022-04-27T12:53:27.998Z",
+      "updatedTime": "2022-04-27T12:53:27.998Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Shortage Quantity by Vendors for last 365 days is as follows:\n\n{1c7e9538-7aeb-4652-83eb-b68f97d7553c}"
+        }
+      },
+      "id": "5eb5728b-9a20-4258-aaa9-c35ac65f0dc4",
+      "createdTime": "2022-04-27T13:14:57.308Z",
+      "updatedTime": "2022-04-27T13:14:57.308Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Sorry, No data available for the selected purchase order {b9c8718b-d96a-4cb1-af3d-d7abbd7cecb0} and company code {eababb8d-dbd1-45bc-a31c-f999a64fc75e}"
+        }
+      },
+      "id": "80505c0e-978b-4d2b-ae96-822f60bd5204",
+      "createdTime": "2022-05-06T12:36:46.152Z",
+      "updatedTime": "2022-05-06T12:36:46.152Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    }
+  ],
+  "actionDefinitions": [
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "{\"text\":\"{a947718b-ab6d-44a8-9a58-9ecd3f3af86c}\",\"text_1\":\"ZGGW_PTP_RP20014_PO_SHORTAGE_SRV_0001\"}",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "4cd5781b-6ab1-ec11-9840-000d3a993196",
+        "title": "solarbot-exchange-token-flow",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "inputParameters": [
+          {
+            "name": "AADJWT",
+            "id": "text",
+            "type": "String",
+            "optional": false
+          },
+          {
+            "name": "ServiceScope",
+            "id": "text_1",
+            "type": "String",
+            "optional": false
+          }
+        ],
+        "outputParameters": [
+          {
+            "name": "SAPToken",
+            "id": "saptoken",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2022-04-01T03:16:24Z",
+        "isEnabled": true,
+        "lastModifiedTime": "2022-04-26T10:45:20Z",
+        "versionNumber": 19800012
+      },
+      "id": "559fd400-0318-421f-b91c-a0b27444b2a0",
+      "displayName": "solarbot-exchange-token-flow",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2022-04-27T12:53:48.329Z",
+      "updatedTime": "2022-04-27T12:53:48.329Z"
+    },
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "{\"text\":\"{fb58b162-b952-4a9e-a2bc-da425a672ad0}\",\"text_1\":\"{eababb8d-dbd1-45bc-a31c-f999a64fc75e}\",\"text_2\":\"{b9c8718b-d96a-4cb1-af3d-d7abbd7cecb0}\"}",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "981fe7ee-29c6-ec11-a7b6-00224826a3f9",
+        "title": "Shortage Report ODATA Flow",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "inputParameters": [
+          {
+            "name": "token",
+            "id": "text",
+            "type": "String",
+            "optional": false
+          },
+          {
+            "name": "companyCode",
+            "id": "text_1",
+            "type": "String",
+            "optional": false
+          },
+          {
+            "name": "purchaseOrder",
+            "id": "text_2",
+            "type": "String",
+            "optional": false
+          }
+        ],
+        "outputParameters": [
+          {
+            "name": "response",
+            "id": "response",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2022-04-27T13:00:03Z",
+        "isEnabled": true,
+        "lastModifiedTime": "2022-05-02T11:43:46Z",
+        "versionNumber": 20027064
+      },
+      "id": "59b69198-b8a3-4936-8c1a-d5fd90fcaaaa",
+      "displayName": "Shortage Report ODATA Flow",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2022-05-02T11:53:10.35Z",
+      "updatedTime": "2022-05-02T11:53:10.35Z"
+    }
+  ],
+  "contextVariables": [
+    {
+      "systemType": "String",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "d84c39a1-b498-4ee3-abcc-e9254e683ca1",
+        "20db237e-ac8d-460e-9508-9ff13b48692e"
+      ],
+      "messages": {
+        "GetValue": [
+          "fff68c56-775f-4422-8465-b6d24843c924"
+        ]
+      },
+      "isGlobal": false,
+      "id": "11b0f70a-fd21-4972-9c25-1f9c7433f02f",
+      "displayName": "User choice",
+      "createdTime": "2022-04-27T12:58:56.8005162Z",
+      "updatedTime": "2022-05-09T15:55:15.1032293Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "None",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "messages": {
+        "GetValue": [
+          "99ab1792-b59e-4dea-bb4d-2a6473499e4e"
+        ]
+      },
+      "isGlobal": false,
+      "id": "b9c8718b-d96a-4cb1-af3d-d7abbd7cecb0",
+      "displayName": "po",
+      "createdTime": "2022-05-02T11:48:20.518Z",
+      "updatedTime": "2022-05-09T15:55:15.1032293Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "None",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "messages": {
+        "GetValue": [
+          "48406f0c-0cfd-414c-bf2e-23f2a5185bbf"
+        ]
+      },
+      "isGlobal": false,
+      "id": "eababb8d-dbd1-45bc-a31c-f999a64fc75e",
+      "displayName": "comCode",
+      "createdTime": "2022-05-02T11:51:21.565Z",
+      "updatedTime": "2022-05-09T15:55:15.1032293Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "customTypeId": "8c85ccd2-6ebb-4883-9365-636ac63b8954",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "559fd400-0318-421f-b91c-a0b27444b2a0",
+      "isGlobal": false,
+      "id": "5a3bb191-a9e1-40a5-b014-5f9024f8a112",
+      "displayName": "",
+      "createdTime": "2022-04-27T12:58:56.8005162Z",
+      "updatedTime": "2022-05-09T15:55:15.1032293Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('5a3bb191-a9e1-40a5-b014-5f9024f8a112')['saptoken']",
+      "isGlobal": false,
+      "id": "fb58b162-b952-4a9e-a2bc-da425a672ad0",
+      "displayName": "SAPToken",
+      "createdTime": "2022-04-27T12:58:56.8005162Z",
+      "updatedTime": "2022-05-09T15:55:15.1032293Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "customTypeId": "ea9205c2-1887-417b-805f-03c85f0db94b",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "59b69198-b8a3-4936-8c1a-d5fd90fcaaaa",
+      "isGlobal": false,
+      "id": "c3d563f4-7e73-4964-a1b2-37047544f15d",
+      "displayName": "",
+      "createdTime": "2022-05-02T11:53:10.35Z",
+      "updatedTime": "2022-05-09T15:55:15.1032293Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('c3d563f4-7e73-4964-a1b2-37047544f15d')['response']",
+      "isGlobal": false,
+      "id": "1c7e9538-7aeb-4652-83eb-b68f97d7553c",
+      "displayName": "response",
+      "createdTime": "2022-05-02T11:53:10.35Z",
+      "updatedTime": "2022-05-09T15:55:15.1032293Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    }
+  ],
+  "jsonTypes": [
+    {
+      "customTypeSchema": "Json",
+      "id": "8c85ccd2-6ebb-4883-9365-636ac63b8954",
+      "displayName": "Response Json Type for Flow - solarbot-exchange-token-flow",
+      "createdTime": "2022-04-27T12:53:48.329Z",
+      "updatedTime": "2022-04-27T12:53:48.329Z"
+    },
+    {
+      "customTypeSchema": "Json",
+      "id": "ea9205c2-1887-417b-805f-03c85f0db94b",
+      "displayName": "Response Json Type for Flow - Shortage Report ODATA Flow",
+      "createdTime": "2022-05-02T11:53:10.35Z",
+      "updatedTime": "2022-05-02T11:53:10.35Z"
+    }
+  ]
+}

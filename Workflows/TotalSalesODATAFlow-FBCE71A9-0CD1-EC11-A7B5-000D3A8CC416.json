@@ -1,0 +1,881 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_webcontents_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedwebcontents_0b60e"
+        },
+        "api": {
+          "name": "shared_webcontents"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "6b621f80-2cb2-46ee-a45a-a445e994dc56"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "token",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "party",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "20eef0b0-8508-44fd-9991-c27cb51fa970"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "response": "@variables('result_set')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "title": "response",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "cf291c72-5ad5-4c65-935f-0d4ec3ea6a1b"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "result_set",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Invoke_an_HTTP_request": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ef358667-6cdd-4d4e-a0d7-47367a1c9ae4"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_webcontents_1",
+              "operationId": "InvokeHttp",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+            },
+            "parameters": {
+              "request/method": "GET",
+              "request/url": "/sap/opu/odata/sap/SD_F1873_SO_WL_SRV/C_SalesOrderWl_F1873?sap-client=505&$filter=SoldToParty%20eq%20%27@{triggerBody()['text_1']}%27&$top=5&$format=json",
+              "request/headers": {
+                "Authorization": "Bearer @{triggerBody()['text']}",
+                "Accept": "application/json"
+              }
+            },
+            "authentication": "@parameters('$authentication')",
+            "retryPolicy": {
+              "type": "none"
+            }
+          }
+        },
+        "Parse_JSON": {
+          "runAfter": {
+            "Invoke_an_HTTP_request": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "43d57d52-75e8-4739-bc22-79fb8b9a8358"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('Invoke_an_HTTP_request')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "d": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "__metadata": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "uri": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "etag": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "SalesOrder": {
+                            "type": "string"
+                          },
+                          "SoldToParty": {
+                            "type": "string"
+                          },
+                          "CustomerName": {
+                            "type": "string"
+                          },
+                          "ShipToParty": {
+                            "type": "string"
+                          },
+                          "PayerParty": {
+                            "type": "string"
+                          },
+                          "BillToParty": {
+                            "type": "string"
+                          },
+                          "SalesEmployee": {
+                            "type": "string"
+                          },
+                          "ResponsibleEmployee": {
+                            "type": "string"
+                          },
+                          "PurchaseOrderByCustomer": {
+                            "type": "string"
+                          },
+                          "RequestedDeliveryDate": {
+                            "type": "string"
+                          },
+                          "OverallSDProcessStatus": {
+                            "type": "string"
+                          },
+                          "OverallSDDocumentRejectionSts": {
+                            "type": "string"
+                          },
+                          "SalesOrderDownPaymentStatus": {
+                            "type": "string"
+                          },
+                          "OverallBillingBlockStatus": {
+                            "type": "string"
+                          },
+                          "SalesDocApprovalStatus": {
+                            "type": "string"
+                          },
+                          "OverallChmlCmplncStatus": {
+                            "type": "string"
+                          },
+                          "OverallDangerousGoodsStatus": {
+                            "type": "string"
+                          },
+                          "OverallSafetyDataSheetStatus": {
+                            "type": "string"
+                          },
+                          "OverallTrdCmplncEmbargoSts": {
+                            "type": "string"
+                          },
+                          "OvrlTrdCmplncSnctndListChkSts": {
+                            "type": "string"
+                          },
+                          "OvrlTrdCmplncLegalCtrlChkSts": {
+                            "type": "string"
+                          },
+                          "BusinessSolutionOrder": {
+                            "type": "string"
+                          },
+                          "TransactionCurrency": {
+                            "type": "string"
+                          },
+                          "TotalNetAmount": {
+                            "type": "string"
+                          },
+                          "SalesOrderDate": {
+                            "type": "string"
+                          },
+                          "SalesOrderType": {
+                            "type": "string"
+                          },
+                          "CreationDate": {
+                            "type": "string"
+                          },
+                          "LastChangeDate": {
+                            "type": "string"
+                          },
+                          "LastChangeDateTime": {
+                            "type": "string"
+                          },
+                          "CreatedByUser": {
+                            "type": "string"
+                          },
+                          "LastChangedByUser": {
+                            "type": "string"
+                          },
+                          "SalesOrganization": {
+                            "type": "string"
+                          },
+                          "DistributionChannel": {
+                            "type": "string"
+                          },
+                          "OrganizationDivision": {
+                            "type": "string"
+                          },
+                          "SalesOffice": {
+                            "type": "string"
+                          },
+                          "SalesGroup": {
+                            "type": "string"
+                          },
+                          "ReferenceSDDocument": {
+                            "type": "string"
+                          },
+                          "SDDocumentReason": {
+                            "type": "string"
+                          },
+                          "DeliveryBlockReason": {
+                            "type": "string"
+                          },
+                          "HeaderBillingBlockReason": {
+                            "type": "string"
+                          },
+                          "SalesDocumentRjcnReason": {
+                            "type": "string"
+                          },
+                          "SlsOrdApprovalStsCriticality": {
+                            "type": "integer"
+                          },
+                          "OrganizationBPName1": {
+                            "type": "string"
+                          },
+                          "OrganizationBPName2": {
+                            "type": "string"
+                          },
+                          "ZZ1_VIR_PG_SO_SDH": {
+                            "type": "string"
+                          },
+                          "ZZ1_VIR_VSO_SO_SDH": {
+                            "type": "string"
+                          },
+                          "ZZ1_VIR_PG_SO_SDHF": {
+                            "type": "integer"
+                          },
+                          "ZZ1_VIR_VSO_SO_SDHF": {
+                            "type": "integer"
+                          },
+                          "to_BillToParty": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_CreatedByUser": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_DeliveryBlockReason": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_DistributionChannel": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_Division": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_DownPaymentStatus": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_HeaderBillingBlockReason": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_LastChangedByUser": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_OrganizationDivision": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_OverallBillingBlockStatus": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_OverallChmlCmplncStatus": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_OverallDangerousGoodsStatus": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_OverallSDDocumentRejectionSts": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_OverallSDProcessStatus": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_OvrlSftyDataSheetSts": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_OvrlTradeCmplncEmbargoStatus": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_OvrlTrdCmplncLegalCtrlChkSts": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_OvTrdCmplncSnctndListChkSts": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_PayerParty": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_ResponsibleEmployee": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_SalesDocApprovalStatus": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_SalesDocumentItemWl": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_SalesDocumentRjcnReason": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_SalesDocumentType": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_SalesEmployee": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_SalesGroup": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_SalesOffice": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_SalesOrganization": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_SDDocumentReason": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_ShipToParty": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_SoldToParty": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "to_TransactionCurrency": {
+                            "type": "object",
+                            "properties": {
+                              "__deferred": {
+                                "type": "object",
+                                "properties": {
+                                  "uri": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "required": [
+                          "__metadata",
+                          "SalesOrder",
+                          "SoldToParty",
+                          "CustomerName",
+                          "ShipToParty",
+                          "PayerParty",
+                          "BillToParty",
+                          "SalesEmployee",
+                          "ResponsibleEmployee",
+                          "PurchaseOrderByCustomer",
+                          "RequestedDeliveryDate",
+                          "OverallSDProcessStatus",
+                          "OverallSDDocumentRejectionSts",
+                          "SalesOrderDownPaymentStatus",
+                          "OverallBillingBlockStatus",
+                          "SalesDocApprovalStatus",
+                          "OverallChmlCmplncStatus",
+                          "OverallDangerousGoodsStatus",
+                          "OverallSafetyDataSheetStatus",
+                          "OverallTrdCmplncEmbargoSts",
+                          "OvrlTrdCmplncSnctndListChkSts",
+                          "OvrlTrdCmplncLegalCtrlChkSts",
+                          "BusinessSolutionOrder",
+                          "TransactionCurrency",
+                          "TotalNetAmount",
+                          "SalesOrderDate",
+                          "SalesOrderType",
+                          "CreationDate",
+                          "LastChangeDate",
+                          "LastChangeDateTime",
+                          "CreatedByUser",
+                          "LastChangedByUser",
+                          "SalesOrganization",
+                          "DistributionChannel",
+                          "OrganizationDivision",
+                          "SalesOffice",
+                          "SalesGroup",
+                          "ReferenceSDDocument",
+                          "SDDocumentReason",
+                          "DeliveryBlockReason",
+                          "HeaderBillingBlockReason",
+                          "SalesDocumentRjcnReason",
+                          "SlsOrdApprovalStsCriticality",
+                          "OrganizationBPName1",
+                          "OrganizationBPName2",
+                          "ZZ1_VIR_PG_SO_SDH",
+                          "ZZ1_VIR_VSO_SO_SDH",
+                          "ZZ1_VIR_PG_SO_SDHF",
+                          "ZZ1_VIR_VSO_SO_SDHF",
+                          "to_BillToParty",
+                          "to_CreatedByUser",
+                          "to_DeliveryBlockReason",
+                          "to_DistributionChannel",
+                          "to_Division",
+                          "to_DownPaymentStatus",
+                          "to_HeaderBillingBlockReason",
+                          "to_LastChangedByUser",
+                          "to_OrganizationDivision",
+                          "to_OverallBillingBlockStatus",
+                          "to_OverallChmlCmplncStatus",
+                          "to_OverallDangerousGoodsStatus",
+                          "to_OverallSDDocumentRejectionSts",
+                          "to_OverallSDProcessStatus",
+                          "to_OvrlSftyDataSheetSts",
+                          "to_OvrlTradeCmplncEmbargoStatus",
+                          "to_OvrlTrdCmplncLegalCtrlChkSts",
+                          "to_OvTrdCmplncSnctndListChkSts",
+                          "to_PayerParty",
+                          "to_ResponsibleEmployee",
+                          "to_SalesDocApprovalStatus",
+                          "to_SalesDocumentItemWl",
+                          "to_SalesDocumentRjcnReason",
+                          "to_SalesDocumentType",
+                          "to_SalesEmployee",
+                          "to_SalesGroup",
+                          "to_SalesOffice",
+                          "to_SalesOrganization",
+                          "to_SDDocumentReason",
+                          "to_ShipToParty",
+                          "to_SoldToParty",
+                          "to_TransactionCurrency"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@body('Parse_JSON')?['d']?['results']",
+          "actions": {
+            "Compose": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "5e9fa61d-6009-45c2-b040-6edf1cfdcd88"
+              },
+              "type": "Compose",
+              "inputs": "@first(split(last(split(items('Apply_to_each')?['RequestedDeliveryDate'], '(')),')'))"
+            },
+            "Compose_2": {
+              "runAfter": {
+                "Compose": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "362999b9-c385-48b6-8ec4-fd66945eafc2"
+              },
+              "type": "Compose",
+              "inputs": "\n@{addseconds('1970-1-1', Div(int(outputs('Compose')),1000),'yyyy/MM/dd')} --- @{items('Apply_to_each')?['PurchaseOrderByCustomer']}    \n"
+            },
+            "Append_to_string_variable": {
+              "runAfter": {
+                "Compose_2": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "09da8fc9-f222-47ca-933c-bd0536d38baf"
+              },
+              "type": "AppendToStringVariable",
+              "inputs": {
+                "name": "result_set",
+                "value": "@outputs('Compose_2')"
+              }
+            }
+          },
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "76ce65cd-5cd7-421a-b63c-7bc3685fe21e"
+          },
+          "type": "Foreach"
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}

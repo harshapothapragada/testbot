@@ -1,0 +1,403 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "profit margin/credit memo"
+      ],
+      "dialogId": "new_topic_09c9a44a463e43998c40c46cac0c1120",
+      "isTriggeringEnabled": false,
+      "id": "new_topic_09c9a44a463e43998c40c46cac0c1120",
+      "displayName": "Profit Margin/ Credit Memo",
+      "createdTime": "2022-04-25T10:16:17.2634204Z",
+      "updatedTime": "2022-04-27T07:50:06.4427439Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ],
+  "namedEntities": [
+    {
+      "id": "81af3eb5-c547-4615-b8fd-0bdb6f379e33",
+      "displayName": "Retry"
+    },
+    {
+      "id": "c2d56829-ffe1-4dd6-bd4c-87ea5aec7bf9",
+      "displayName": "Talk to an agent"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "06954fdf-9506-4883-aba2-4d12e4d661ec",
+      "messageNodes": [
+        {
+          "botMessageId": "b32a36bc-ec78-4fe8-acac-2ed16f22e5d8",
+          "nodeType": "BotMessageNode",
+          "id": "9f9ef05c-3fa0-468b-b36d-a23eeb2bfdc6",
+          "defaultTargetNodeId": "266321db-14af-4454-b144-a5e2710d0cb7"
+        },
+        {
+          "botMessageId": "1e80d48d-782b-4cd7-b4bb-e4728e70f2c0",
+          "nodeType": "BotMessageNode",
+          "id": "7e07d54b-f7de-4110-8822-0b018962d7bb",
+          "defaultTargetNodeId": "c5972687-7d53-40b0-af1a-56049ff0a3a8"
+        },
+        {
+          "botMessageId": "e57dba36-0f66-458b-b137-9460ab77a02c",
+          "nodeType": "BotMessageNode",
+          "id": "2646b7f4-4258-4758-807b-f4f37e9d6876"
+        }
+      ],
+      "actionNodes": [
+        {
+          "contextVariableId": "9b54018b-fd07-472a-90a7-3ff6d4f8e4a5",
+          "nodeType": "ActionNode",
+          "inputParameterVariableIdMap": {
+            "text": "{a947718b-ab6d-44a8-9a58-9ecd3f3af86c}",
+            "text_1": "C_SALESVOLUMEANALYTICSQRY_CDS_0001"
+          },
+          "outputExpressionVariableIds": [
+            "29c36bbb-170d-460b-9230-676ecafbc7b9"
+          ],
+          "id": "026b62c3-cf87-4958-b9d5-276c8b7bc2b7",
+          "defaultTargetNodeId": "b9fc975f-d3fc-4a57-85a2-a153fe5c95f4"
+        },
+        {
+          "contextVariableId": "f127ad3d-62d3-437f-a0fd-43ac90cdaa74",
+          "nodeType": "ActionNode",
+          "inputParameterVariableIdMap": {
+            "text": "{29c36bbb-170d-460b-9230-676ecafbc7b9}",
+            "text_1": "{a5477aa3-c12d-4b2e-af8c-75c3182303be}"
+          },
+          "outputExpressionVariableIds": [
+            "5f9f08bd-ade5-4191-adcf-7200a6ff7e8d"
+          ],
+          "id": "c5972687-7d53-40b0-af1a-56049ff0a3a8",
+          "defaultTargetNodeId": "2646b7f4-4258-4758-807b-f4f37e9d6876"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "59158617-2d04-4920-a109-a548fc3eda04",
+          "nodeType": "QuestionNode",
+          "id": "266321db-14af-4454-b144-a5e2710d0cb7"
+        },
+        {
+          "contextVariableId": "a5477aa3-c12d-4b2e-af8c-75c3182303be",
+          "nodeType": "QuestionNode",
+          "id": "b9fc975f-d3fc-4a57-85a2-a153fe5c95f4",
+          "defaultTargetNodeId": "7e07d54b-f7de-4110-8822-0b018962d7bb"
+        }
+      ],
+      "loginNodes": [
+        {
+          "userTokenVariableId": "a947718b-ab6d-44a8-9a58-9ecd3f3af86c",
+          "nodeType": "LoginNode",
+          "id": "06954fdf-9506-4883-aba2-4d12e4d661ec",
+          "routes": [
+            {
+              "expression": "@equals(parameters('a79b14f0-656b-4d39-96db-2abf9ec3c8e3'), true)",
+              "targetNodeId": "026b62c3-cf87-4958-b9d5-276c8b7bc2b7"
+            }
+          ],
+          "defaultTargetNodeId": "9f9ef05c-3fa0-468b-b36d-a23eeb2bfdc6"
+        }
+      ],
+      "id": "new_topic_09c9a44a463e43998c40c46cac0c1120",
+      "displayName": "Untitled",
+      "createdTime": "2022-04-25T10:16:17.2634204Z",
+      "updatedTime": "2022-04-25T10:48:24.2943882Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "What would you like to do next?"
+        }
+      },
+      "id": "d454de7f-b664-4d07-bf57-95522c1f190a",
+      "createdTime": "2022-04-25T10:12:06.966Z",
+      "updatedTime": "2022-04-25T10:12:06.966Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Provide Year and Month in format YYYYMM for which profit margin/credit memo has to be determined"
+        }
+      },
+      "id": "7cf452c7-ed0e-42b5-9737-19862b17d589",
+      "createdTime": "2022-04-25T10:14:09.005Z",
+      "updatedTime": "2022-04-25T10:14:09.005Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "There was an issue logging you in."
+        }
+      },
+      "id": "b32a36bc-ec78-4fe8-acac-2ed16f22e5d8",
+      "createdTime": "2022-04-25T10:12:06.967Z",
+      "updatedTime": "2022-04-25T10:12:06.967Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Display {a5477aa3-c12d-4b2e-af8c-75c3182303be}"
+        }
+      },
+      "id": "1e80d48d-782b-4cd7-b4bb-e4728e70f2c0",
+      "createdTime": "2022-04-25T10:15:05.458Z",
+      "updatedTime": "2022-04-25T10:15:05.458Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Your response is  {5f9f08bd-ade5-4191-adcf-7200a6ff7e8d}"
+        }
+      },
+      "id": "e57dba36-0f66-458b-b137-9460ab77a02c",
+      "createdTime": "2022-04-25T10:24:51.99Z",
+      "updatedTime": "2022-04-25T10:24:51.99Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    }
+  ],
+  "actionDefinitions": [
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "{\"text\":\"{a947718b-ab6d-44a8-9a58-9ecd3f3af86c}\",\"text_1\":\"C_SALESVOLUMEANALYTICSQRY_CDS_0001\"}",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "4cd5781b-6ab1-ec11-9840-000d3a993196",
+        "title": "solarbot-exchange-token-flow",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "inputParameters": [
+          {
+            "name": "AADJWT",
+            "id": "text",
+            "type": "String",
+            "optional": false
+          },
+          {
+            "name": "ServiceScope",
+            "id": "text_1",
+            "type": "String",
+            "optional": false
+          }
+        ],
+        "outputParameters": [
+          {
+            "name": "SAPToken",
+            "id": "saptoken",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2022-04-01T03:16:24Z",
+        "isEnabled": true,
+        "lastModifiedTime": "2022-04-22T07:08:17Z",
+        "versionNumber": 19762094
+      },
+      "id": "86d0fa13-068a-4265-afd5-d9094450d2c5",
+      "displayName": "solarbot-exchange-token-flow",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2022-04-25T10:12:21.201Z",
+      "updatedTime": "2022-04-25T10:12:21.201Z"
+    },
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "{\"text\":\"{29c36bbb-170d-460b-9230-676ecafbc7b9}\",\"text_1\":\"{a5477aa3-c12d-4b2e-af8c-75c3182303be}\"}",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "50a7d160-81c4-ec11-a7b6-00224826a3f9",
+        "title": "Profit Margin/Credit Memos ODATA Flow",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "inputParameters": [
+          {
+            "name": "token",
+            "id": "text",
+            "type": "String",
+            "optional": false
+          },
+          {
+            "name": "duration",
+            "id": "text_1",
+            "type": "String",
+            "optional": false
+          }
+        ],
+        "outputParameters": [
+          {
+            "name": "response",
+            "id": "response",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2022-04-25T10:20:58Z",
+        "isEnabled": false,
+        "lastModifiedTime": "2022-04-25T10:23:55Z",
+        "versionNumber": 19788282
+      },
+      "id": "d39fcd75-bda3-4a3b-bae0-0d376ce78a5b",
+      "displayName": "Profit Margin/Credit Memos ODATA Flow",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2022-04-25T10:24:36.796Z",
+      "updatedTime": "2022-04-25T10:24:36.796Z"
+    }
+  ],
+  "contextVariables": [
+    {
+      "systemType": "String",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "81af3eb5-c547-4615-b8fd-0bdb6f379e33",
+        "c2d56829-ffe1-4dd6-bd4c-87ea5aec7bf9"
+      ],
+      "messages": {
+        "GetValue": [
+          "d454de7f-b664-4d07-bf57-95522c1f190a"
+        ]
+      },
+      "isGlobal": false,
+      "id": "59158617-2d04-4920-a109-a548fc3eda04",
+      "displayName": "User choice",
+      "createdTime": "2022-04-25T10:16:17.2634204Z",
+      "updatedTime": "2022-04-25T10:48:24.2943882Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "None",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "messages": {
+        "GetValue": [
+          "7cf452c7-ed0e-42b5-9737-19862b17d589"
+        ]
+      },
+      "isGlobal": false,
+      "id": "a5477aa3-c12d-4b2e-af8c-75c3182303be",
+      "displayName": "duration",
+      "createdTime": "2022-04-25T10:16:17.2634204Z",
+      "updatedTime": "2022-04-25T10:48:24.2943882Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "customTypeId": "7d00f052-b8eb-48b2-8304-e709c18274d5",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "86d0fa13-068a-4265-afd5-d9094450d2c5",
+      "isGlobal": false,
+      "id": "9b54018b-fd07-472a-90a7-3ff6d4f8e4a5",
+      "displayName": "",
+      "createdTime": "2022-04-25T10:16:17.2634204Z",
+      "updatedTime": "2022-04-25T10:48:24.2943882Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('9b54018b-fd07-472a-90a7-3ff6d4f8e4a5')['saptoken']",
+      "isGlobal": false,
+      "id": "29c36bbb-170d-460b-9230-676ecafbc7b9",
+      "displayName": "SAPToken",
+      "createdTime": "2022-04-25T10:16:17.2634204Z",
+      "updatedTime": "2022-04-25T10:48:24.2943882Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "customTypeId": "53122c16-75e2-4006-bbbe-ef22ccbd11d6",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "d39fcd75-bda3-4a3b-bae0-0d376ce78a5b",
+      "isGlobal": false,
+      "id": "f127ad3d-62d3-437f-a0fd-43ac90cdaa74",
+      "displayName": "",
+      "createdTime": "2022-04-25T10:24:36.797Z",
+      "updatedTime": "2022-04-25T10:48:24.2943882Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('f127ad3d-62d3-437f-a0fd-43ac90cdaa74')['response']",
+      "isGlobal": false,
+      "id": "5f9f08bd-ade5-4191-adcf-7200a6ff7e8d",
+      "displayName": "response",
+      "createdTime": "2022-04-25T10:24:36.797Z",
+      "updatedTime": "2022-04-25T10:48:24.2943882Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    }
+  ],
+  "jsonTypes": [
+    {
+      "customTypeSchema": "Json",
+      "id": "7d00f052-b8eb-48b2-8304-e709c18274d5",
+      "displayName": "Response Json Type for Flow - solarbot-exchange-token-flow",
+      "createdTime": "2022-04-25T10:12:21.201Z",
+      "updatedTime": "2022-04-25T10:12:21.201Z"
+    },
+    {
+      "customTypeSchema": "Json",
+      "id": "53122c16-75e2-4006-bbbe-ef22ccbd11d6",
+      "displayName": "Response Json Type for Flow - Profit Margin/Credit Memos ODATA Flow",
+      "createdTime": "2022-04-25T10:24:36.797Z",
+      "updatedTime": "2022-04-25T10:24:36.797Z"
+    }
+  ]
+}

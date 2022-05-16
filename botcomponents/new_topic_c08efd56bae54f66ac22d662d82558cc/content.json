@@ -1,0 +1,158 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "why don't you understand",
+        "terrible",
+        "Horrible",
+        "you are not being helpful",
+        "Unexpected behaviour",
+        "this is useless",
+        "this bot is stupid",
+        "idiot bot",
+        "worst experience",
+        "very bad",
+        "Idiot"
+      ],
+      "dialogId": "new_topic_c08efd56bae54f66ac22d662d82558cc",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_c08efd56bae54f66ac22d662d82558cc",
+      "displayName": "Negative Adjectives",
+      "createdTime": "2022-05-06T08:56:13.0952189Z",
+      "updatedTime": "2022-05-06T11:43:25.097157Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "ff3ff34c-b403-4cef-b78e-672cc097e5a9",
+      "messageNodes": [
+        {
+          "botMessageId": "da65c8d7-d6c0-444e-a3f2-875c89d7a55e",
+          "nodeType": "BotMessageNode",
+          "id": "02b23f39-2d5b-4793-85d7-bb9808a748d3",
+          "defaultTargetNodeId": "15821c88-da50-4f34-a2ed-76a5e520117d"
+        }
+      ],
+      "actionNodes": [
+        {
+          "contextVariableId": "5d43450a-4c70-4bbc-acd1-63eacd4e264d",
+          "nodeType": "ActionNode",
+          "outputExpressionVariableIds": [
+            "0072e6b4-40a6-4aa6-9c63-45d45a2b1d69"
+          ],
+          "id": "ff3ff34c-b403-4cef-b78e-672cc097e5a9",
+          "defaultTargetNodeId": "02b23f39-2d5b-4793-85d7-bb9808a748d3"
+        }
+      ],
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_37ca5af80c774e0187928cc81ca8ea7a_8a4964498f83424bb3a86295bf7d0952_startover",
+          "nodeType": "DialogChangeNode",
+          "id": "15821c88-da50-4f34-a2ed-76a5e520117d"
+        }
+      ],
+      "id": "new_topic_c08efd56bae54f66ac22d662d82558cc",
+      "displayName": "Untitled",
+      "createdTime": "2022-05-06T08:56:13.0952189Z",
+      "updatedTime": "2022-05-06T11:43:25.097157Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "{0072e6b4-40a6-4aa6-9c63-45d45a2b1d69}"
+        }
+      },
+      "id": "da65c8d7-d6c0-444e-a3f2-875c89d7a55e",
+      "createdTime": "2022-05-06T08:56:06.875Z",
+      "updatedTime": "2022-05-06T08:56:06.875Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    }
+  ],
+  "actionDefinitions": [
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "fe63e125-19cd-ec11-a7b5-00224834a45c",
+        "title": "negative random texts",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "outputParameters": [
+          {
+            "name": "selectedtext",
+            "id": "selectedtext",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2022-05-06T08:47:26Z",
+        "isEnabled": false,
+        "lastModifiedTime": "2022-05-06T08:51:24Z",
+        "versionNumber": 20060296
+      },
+      "id": "a63b66d0-5bac-431c-a953-bc4de925917a",
+      "displayName": "negative random texts",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2022-05-06T08:56:01.11Z",
+      "updatedTime": "2022-05-06T08:56:01.11Z"
+    }
+  ],
+  "contextVariables": [
+    {
+      "customTypeId": "832fdb04-ec5e-4201-b287-83e42a17cef2",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "a63b66d0-5bac-431c-a953-bc4de925917a",
+      "isGlobal": false,
+      "id": "5d43450a-4c70-4bbc-acd1-63eacd4e264d",
+      "displayName": "",
+      "createdTime": "2022-05-06T08:56:13.0952189Z",
+      "updatedTime": "2022-05-06T11:43:25.097157Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('5d43450a-4c70-4bbc-acd1-63eacd4e264d')['selectedtext']",
+      "isGlobal": false,
+      "id": "0072e6b4-40a6-4aa6-9c63-45d45a2b1d69",
+      "displayName": "selectedtext",
+      "createdTime": "2022-05-06T08:56:13.0952189Z",
+      "updatedTime": "2022-05-06T11:43:25.097157Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ],
+  "jsonTypes": [
+    {
+      "customTypeSchema": "Json",
+      "id": "832fdb04-ec5e-4201-b287-83e42a17cef2",
+      "displayName": "Response Json Type for Flow - negative random texts",
+      "createdTime": "2022-05-06T08:56:01.111Z",
+      "updatedTime": "2022-05-06T08:56:01.111Z"
+    }
+  ]
+}

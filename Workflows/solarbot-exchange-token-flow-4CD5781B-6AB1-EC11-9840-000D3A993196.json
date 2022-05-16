@@ -1,0 +1,252 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_webcontents": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedwebcontents_3ceac"
+        },
+        "api": {
+          "name": "shared_webcontents"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "sap_clientid (new_sap_clientid)": {
+          "defaultValue": "USR_CHATBOT",
+          "type": "String",
+          "metadata": {
+            "schemaName": "new_sap_clientid",
+            "description": "SAP client ID"
+          }
+        },
+        "bot_tenantid (new_bot_tenantid)": {
+          "defaultValue": "45cb9485-673d-45df-a2f0-27486343afda",
+          "type": "String",
+          "metadata": {
+            "schemaName": "new_bot_tenantid",
+            "description": "Bot App tenant id"
+          }
+        },
+        "sap_clientsecret (new_sap_clientsecret)": {
+          "defaultValue": "Mex!co20",
+          "type": "String",
+          "metadata": {
+            "schemaName": "new_sap_clientsecret",
+            "description": "SAP Client secret"
+          }
+        },
+        "botclientId (new_botclientId)": {
+          "defaultValue": "61a7d5d3-dd0b-4d12-9b81-34f1027ba663",
+          "type": "String",
+          "metadata": {
+            "schemaName": "new_botclientId"
+          }
+        },
+        "botsecret (new_botsecret)": {
+          "defaultValue": "QBd8Q~WgxEFnS0SfDeh_eH.y.kh7bXyMEZa2cca.",
+          "type": "String",
+          "metadata": {
+            "schemaName": "new_botsecret"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "29c1f160-a932-4d53-a3d3-0f820f3f5d98"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "AADJWT",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "ServiceScope",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Parse_SAP_Token_Response": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "94ad18a2-78e6-495d-9054-cbc1d39765ac"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "saptoken": "@body('Parse_SAP_Token_Response')?['access_token']"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "saptoken": {
+                  "title": "SAPToken",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Exchange_AAD_JWT_to_AAD_SAML_Assertion": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "990b607c-43bb-405d-a8bd-d6f1ae193f78"
+          },
+          "type": "Http",
+          "inputs": {
+            "method": "POST",
+            "uri": "https://login.microsoftonline.com/@{parameters('bot_tenantid (new_bot_tenantid)')}/oauth2/token",
+            "headers": {
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            "body": "assertion=@{triggerBody()?['text']}&grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&client_id=@{parameters('botclientId (new_botclientId)')}&client_secret=@{parameters('botsecret (new_botsecret)')}&resource=https://vhlevfg1ci.hec.levi.com:44300&requested_token_use=on_behalf_of&requested_token_type=urn:ietf:params:oauth:token-type:saml2"
+          }
+        },
+        "Parse_AAD_Token_Response": {
+          "runAfter": {
+            "Exchange_AAD_JWT_to_AAD_SAML_Assertion": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "60e715c5-4746-4ba7-a73b-b33077500b04"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('Exchange_AAD_JWT_to_AAD_SAML_Assertion')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token_type": {
+                  "type": "string"
+                },
+                "expires_in": {
+                  "type": "string"
+                },
+                "ext_expires_in": {
+                  "type": "string"
+                },
+                "expires_on": {
+                  "type": "string"
+                },
+                "resource": {
+                  "type": "string"
+                },
+                "access_token": {
+                  "type": "string"
+                },
+                "issued_token_type": {
+                  "type": "string"
+                },
+                "refresh_token": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Get_SAP_Bearer_Token_with_SAML_Assertion": {
+          "runAfter": {
+            "Parse_AAD_Token_Response": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "4fb1f7e1-09ca-4d3b-83bb-da5a28f857cb"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_webcontents",
+              "operationId": "InvokeHttp",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+            },
+            "parameters": {
+              "request/method": "POST",
+              "request/url": "/sap/bc/sec/oauth2/token?sap-client=505",
+              "request/headers": {
+                "Content-Type": "application/x-www-form-urlencoded"
+              },
+              "request/body": "assertion=@{body('Parse_AAD_Token_Response')?['access_token']}&client_id=@{parameters('sap_clientid (new_sap_clientid)')}&client_secret=@{parameters('sap_clientsecret (new_sap_clientsecret)')}&grant_type=urn:ietf:params:oauth:grant-type:saml2-bearer&scope=@{triggerBody()['text_1']}"
+            },
+            "authentication": "@parameters('$authentication')",
+            "retryPolicy": {
+              "type": "none"
+            }
+          }
+        },
+        "Parse_SAP_Token_Response": {
+          "runAfter": {
+            "Get_SAP_Bearer_Token_with_SAML_Assertion": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2ed82c66-5efd-4b23-980e-e098cba892d0"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('Get_SAP_Bearer_Token_with_SAML_Assertion')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "access_token": {
+                  "type": "string"
+                },
+                "token_type": {
+                  "type": "string"
+                },
+                "expires_in": {
+                  "type": "string"
+                },
+                "scope": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,7 @@
+<botcomponent schemaname="new_topic_8cb185c8161c40c38cdfa30214e64e3a">
+  <componenttype>0</componenttype>
+  <iscustomizable>1</iscustomizable>
+  <name>Overdue PO Items</name>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+</botcomponent>

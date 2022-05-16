@@ -1,0 +1,230 @@
+{
+  "intents": [
+    {
+      "systemIntentTypes": [
+        "ConversationStart",
+        "Greeting"
+      ],
+      "intentType": "System",
+      "triggerQueries": [
+        "Good afternoon",
+        "Good morning",
+        "Hello",
+        "Hello agent!",
+        "Hello and good morning to you",
+        "Hello can you help me?",
+        "Hello can you please help me",
+        "Hello friend",
+        "Hello good afternoon",
+        "Hello good evening",
+        "Hello greeting",
+        "Hello how are you",
+        "Hello how are you doing?",
+        "Hello how are you?",
+        "Hello I need help",
+        "Hello madam",
+        "Hello my friend",
+        "Hello sir",
+        "Hello support",
+        "Hello team",
+        "Hello there",
+        "Hello there, how are you?",
+        "Hello virtual agent",
+        "Hello!",
+        "Hello, good day to you",
+        "Hello, good evening",
+        "Hello, good morning",
+        "Hello, how are you doing today?",
+        "Hello, how are you?",
+        "Hello, I need help",
+        "Hey",
+        "Hey !",
+        "Hey :)",
+        "Hey good morning",
+        "Hey how are u",
+        "Hey I need help",
+        "Hey man",
+        "Hi",
+        "Hi agent",
+        "Hi can you help me",
+        "Hi good afternoon",
+        "Hi good day",
+        "Hi good evening",
+        "Hi how are you",
+        "Hi how are you doing today?",
+        "Hi I hope you can help me",
+        "Hi I need help",
+        "Hi I need help here",
+        "Hi support",
+        "Hi support team",
+        "Hi there!",
+        "Hi virtual agent"
+      ],
+      "dialogId": "new_topic_37ca5af80c774e0187928cc81ca8ea7a_ba7b967c97ba4c39bca58a8bb6a72d59_conversationstart",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_37ca5af80c774e0187928cc81ca8ea7a_ba7b967c97ba4c39bca58a8bb6a72d59_conversationstart",
+      "displayName": "Greeting",
+      "description": "This is the default greeting when a chat begins. Start by having your bot or virtual agent introduce itself. When building out topics, consider whether you need to comply with applicable local law.",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2022-05-09T12:26:54.5866803Z",
+      "createdUserId": "user0",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ],
+  "namedEntities": [
+    {
+      "id": "5c947e97-8ef0-4264-87bb-b02fb86839fc",
+      "displayName": "Purchase Order"
+    },
+    {
+      "id": "4783d9cb-7d4c-4dd5-89cb-41114a99ea22",
+      "displayName": "Sales"
+    },
+    {
+      "id": "93b84b5a-be26-4311-80ff-19ea56f470f7",
+      "displayName": "Purchase Contract items"
+    },
+    {
+      "id": "64486f72-cc6c-4485-bcf5-457c009b7fb3",
+      "displayName": "Stock"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "cc5488b1-6d74-4950-b4a7-45f8aba15a44",
+      "dialogType": "System",
+      "messageNodes": [
+        {
+          "botMessageId": "1edf5849-e499-4a6d-9fed-2a9ca0e43c87",
+          "nodeType": "BotMessageNode",
+          "id": "768db8e6-1db0-4117-a5d4-0ebd7f7ac2b3",
+          "defaultTargetNodeId": "3b1255cd-706f-4122-9489-58eb4467b9cc"
+        }
+      ],
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_37ca5af80c774e0187928cc81ca8ea7a_f56d1a3e522740c78f9fac0939332dbd_goodbye",
+          "nodeType": "DialogChangeNode",
+          "id": "3b1255cd-706f-4122-9489-58eb4467b9cc"
+        },
+        {
+          "targetDialogId": "new_topic_4afc4a17d257422fb4f96a5391aeeba4",
+          "nodeType": "DialogChangeNode",
+          "id": "58119303-5688-433b-b8fe-a1b86aba87c0"
+        },
+        {
+          "targetDialogId": "new_topic_9d61678238774861b7a815f9828a341f",
+          "nodeType": "DialogChangeNode",
+          "id": "37906a8e-59c5-4ed4-9e97-364273421574"
+        },
+        {
+          "targetDialogId": "new_topic_c87ab843b22b4185a5c7b6422a419351",
+          "nodeType": "DialogChangeNode",
+          "id": "e6aeefc6-9d36-476a-b46f-7bba76127fc2"
+        },
+        {
+          "targetDialogId": "new_topic_a60be3d22d6644fdb73443b4f625b869",
+          "nodeType": "DialogChangeNode",
+          "id": "f71bcb16-b024-4af4-b9ff-ef1131f7f6b4"
+        },
+        {
+          "targetDialogId": "new_topic_265c82d505a740bcbb87a0bd2352833f",
+          "nodeType": "DialogChangeNode",
+          "id": "907c21ed-12b6-4685-ab34-dae811dd686d"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "e2ac4290-3e58-4c46-ad1f-2ed45bfaf7bf",
+          "nodeType": "QuestionNode",
+          "id": "cc5488b1-6d74-4950-b4a7-45f8aba15a44",
+          "routes": [
+            {
+              "expression": "@equals(parameters('e2ac4290-3e58-4c46-ad1f-2ed45bfaf7bf'), '5c947e97-8ef0-4264-87bb-b02fb86839fc')",
+              "targetNodeId": "37906a8e-59c5-4ed4-9e97-364273421574"
+            },
+            {
+              "expression": "@equals(parameters('e2ac4290-3e58-4c46-ad1f-2ed45bfaf7bf'), '4783d9cb-7d4c-4dd5-89cb-41114a99ea22')",
+              "targetNodeId": "58119303-5688-433b-b8fe-a1b86aba87c0"
+            },
+            {
+              "expression": "@equals(parameters('e2ac4290-3e58-4c46-ad1f-2ed45bfaf7bf'), '93b84b5a-be26-4311-80ff-19ea56f470f7')",
+              "targetNodeId": "e6aeefc6-9d36-476a-b46f-7bba76127fc2"
+            },
+            {
+              "expression": "@equals(parameters('e2ac4290-3e58-4c46-ad1f-2ed45bfaf7bf'), 'Shortage Report')",
+              "targetNodeId": "f71bcb16-b024-4af4-b9ff-ef1131f7f6b4"
+            },
+            {
+              "expression": "@equals(parameters('e2ac4290-3e58-4c46-ad1f-2ed45bfaf7bf'), '64486f72-cc6c-4485-bcf5-457c009b7fb3')",
+              "targetNodeId": "907c21ed-12b6-4685-ab34-dae811dd686d"
+            }
+          ],
+          "defaultTargetNodeId": "768db8e6-1db0-4117-a5d4-0ebd7f7ac2b3"
+        }
+      ],
+      "id": "new_topic_37ca5af80c774e0187928cc81ca8ea7a_ba7b967c97ba4c39bca58a8bb6a72d59_conversationstart",
+      "displayName": "Dialog",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2022-05-09T12:26:54.5866803Z",
+      "createdUserId": "user0",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Hi! I'm your virtual agent. I can help you with these topics. Select anyone to proceed!"
+        }
+      },
+      "id": "bd90a3f2-8fa8-428e-9bc0-66b37657a3ca",
+      "createdTime": "2022-04-21T15:03:50.855Z",
+      "updatedTime": "2022-04-21T15:03:50.855Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Sorry! We are working on it at this moment. Kindly restart the agent by typing \"Hi\" and click on any one of the options provided."
+        }
+      },
+      "id": "1edf5849-e499-4a6d-9fed-2a9ca0e43c87",
+      "createdTime": "2019-01-15T00:00:00Z",
+      "updatedTime": "2019-01-15T00:00:00Z",
+      "createdUserId": "user0",
+      "updatedUserId": "user0"
+    }
+  ],
+  "contextVariables": [
+    {
+      "systemType": "String",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "5c947e97-8ef0-4264-87bb-b02fb86839fc",
+        "4783d9cb-7d4c-4dd5-89cb-41114a99ea22",
+        "93b84b5a-be26-4311-80ff-19ea56f470f7",
+        "64486f72-cc6c-4485-bcf5-457c009b7fb3"
+      ],
+      "messages": {
+        "GetValue": [
+          "bd90a3f2-8fa8-428e-9bc0-66b37657a3ca"
+        ]
+      },
+      "isGlobal": false,
+      "id": "e2ac4290-3e58-4c46-ad1f-2ed45bfaf7bf",
+      "displayName": "Var",
+      "createdTime": "2022-04-21T15:03:50.856Z",
+      "updatedTime": "2022-05-09T12:26:54.5866803Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ]
+}

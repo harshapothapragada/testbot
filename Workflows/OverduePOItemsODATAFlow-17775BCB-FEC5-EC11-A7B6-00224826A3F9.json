@@ -1,0 +1,305 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_webcontents": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedwebcontents_0b60e"
+        },
+        "api": {
+          "name": "shared_webcontents"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "0cb4613a-d88f-4349-a2cf-fb104a201bab"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "token",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "overdue_duration",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Apply_to_each": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f3c5ad54-8b00-49c1-a0bf-64ba9f42c655"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "response": "@variables('result_set')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "title": "response",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Invoke_an_HTTP_request": {
+          "runAfter": {
+            "Switch": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "51a14b7a-68d5-4bee-b7bc-18a90d8f1c91"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_webcontents",
+              "operationId": "InvokeHttp",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+            },
+            "parameters": {
+              "request/method": "GET",
+              "request/url": "/sap/opu/odata/sap/C_OVERDUEPO_CDS/C_OverduePO(P_DisplayCurrency='USD',P_DateFunction='@{variables('duration')}')/Results?sap-client=505&$format=json&$orderby=OverdueDays%20desc&$select=Supplier,SupplierName,Material,MaterialName,OverdueDays&$top=10",
+              "request/headers": {
+                "Authorization": "Bearer @{triggerBody()['text']}",
+                "Accept": "application/json"
+              }
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Parse_JSON": {
+          "runAfter": {
+            "Invoke_an_HTTP_request": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f10b7540-f4fa-4add-a5c2-4ceb2c112325"
+          },
+          "type": "ParseJson",
+          "inputs": {
+            "content": "@body('Invoke_an_HTTP_request')",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "d": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "__metadata": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "uri": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "Supplier": {
+                            "type": "string"
+                          },
+                          "SupplierName": {
+                            "type": "string"
+                          },
+                          "Material": {
+                            "type": "string"
+                          },
+                          "MaterialName": {
+                            "type": "string"
+                          },
+                          "OverdueDays": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "__metadata",
+                          "Supplier",
+                          "SupplierName",
+                          "Material",
+                          "MaterialName",
+                          "OverdueDays"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Switch": {
+          "runAfter": {
+            "Initialize_variable_2": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Case_2": {
+              "case": "Previous quarter till date",
+              "actions": {
+                "Set_variable_2": {
+                  "runAfter": {},
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "duration",
+                    "value": "PREVIOUS_QUARTERTODATE"
+                  }
+                }
+              }
+            },
+            "Case_3": {
+              "case": "Next 90 days",
+              "actions": {
+                "Set_variable_3": {
+                  "runAfter": {},
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "duration",
+                    "value": "NEXT90DAYS"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {}
+          },
+          "expression": "@triggerBody()['text_1']",
+          "metadata": {
+            "operationMetadataId": "9ea5ca89-32c3-43ed-973e-ea69838f2b86"
+          },
+          "type": "Switch"
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "30853e73-879c-40c5-a8d0-f4613f30f63e"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "duration",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@body('Parse_JSON')?['d']?['results']",
+          "actions": {
+            "Compose": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "fa404a47-48d9-4710-8ada-b1e8e570b43f"
+              },
+              "type": "Compose",
+              "inputs": "\n\nSupplier is @{items('Apply_to_each')?['Supplier']} ( @{items('Apply_to_each')?['SupplierName']} )\n\nMaterial is @{items('Apply_to_each')?['Material']} ( @{items('Apply_to_each')?['MaterialName']} )\n\nNo. of overdue days is @{items('Apply_to_each')?['OverdueDays']}\n_________________________________________________________\n"
+            },
+            "Append_to_string_variable": {
+              "runAfter": {
+                "Compose": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "fc5feceb-5b87-4878-9268-dd15ccafa695"
+              },
+              "type": "AppendToStringVariable",
+              "inputs": {
+                "name": "result_set",
+                "value": "@outputs('Compose')"
+              }
+            }
+          },
+          "runAfter": {
+            "Parse_JSON": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "96edd933-9fff-4390-b4b3-603057a229ab"
+          },
+          "type": "Foreach"
+        },
+        "Initialize_variable_2": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f0e5c769-9587-40a9-a258-70793cf80bb2"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "result_set",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,436 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_webcontents_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedwebcontents_0b60e"
+        },
+        "api": {
+          "name": "shared_webcontents"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "e3f85c1e-59c7-41d2-b70d-0d74c7910093"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "flowName",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "material",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "token",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_2"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Switch": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a6c2e4e2-869e-402a-ae8f-6a5594fb5496"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "output": "@variables('result_set')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "output": {
+                  "title": "output",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Switch": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "cases": {
+            "Case": {
+              "case": "Stock_by_material",
+              "actions": {
+                "Invoke_an_HTTP_request": {
+                  "runAfter": {},
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_webcontents_1",
+                      "operationId": "InvokeHttp",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                    },
+                    "parameters": {
+                      "request/method": "GET",
+                      "request/url": "/sap/opu/odata/sap/MMIM_MULTIPLE_MATERIAL_SRV/MaterialMultiStockByDates?sap-client=505&$filter=Material%20eq%20%27@{triggerBody()['text_1']}%27&$select=Material%2CMaterialName%2CPlant%2CPlantName%2CStorageLocation%2CStorageLocationName%2CInventorySpecialStockType%2CCurrentStock%2CBaseUnit%2CQualityInspectionStockQuantity%2CBlockedStockQuantity%2CGeneratedId&$orderby=Material%20desc%2CPlant%20asc%2CStorageLocation%20asc&$top=5&$format=json",
+                      "request/headers": {
+                        "Authorization": "Bearer @{triggerBody()['text_2']}",
+                        "Content-Type": "application/json"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')",
+                    "retryPolicy": {
+                      "type": "none"
+                    }
+                  }
+                },
+                "Parse_JSON": {
+                  "runAfter": {
+                    "Invoke_an_HTTP_request": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@body('Invoke_an_HTTP_request')",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "d": {
+                          "type": "object",
+                          "properties": {
+                            "results": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "__metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "uri": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "BaseUnit": {
+                                    "type": "string"
+                                  },
+                                  "BlockedStockQuantity": {
+                                    "type": "string"
+                                  },
+                                  "CurrentStock": {
+                                    "type": "string"
+                                  },
+                                  "GeneratedId": {
+                                    "type": "string"
+                                  },
+                                  "InventorySpecialStockType": {
+                                    "type": "string"
+                                  },
+                                  "Material": {
+                                    "type": "string"
+                                  },
+                                  "MaterialName": {
+                                    "type": "string"
+                                  },
+                                  "Plant": {
+                                    "type": "string"
+                                  },
+                                  "PlantName": {
+                                    "type": "string"
+                                  },
+                                  "QualityInspectionStockQuantity": {
+                                    "type": "string"
+                                  },
+                                  "StorageLocation": {
+                                    "type": "string"
+                                  },
+                                  "StorageLocationName": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "__metadata",
+                                  "BaseUnit",
+                                  "BlockedStockQuantity",
+                                  "CurrentStock",
+                                  "GeneratedId",
+                                  "InventorySpecialStockType",
+                                  "Material",
+                                  "MaterialName",
+                                  "Plant",
+                                  "PlantName",
+                                  "QualityInspectionStockQuantity",
+                                  "StorageLocation",
+                                  "StorageLocationName"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Apply_to_each": {
+                  "foreach": "@body('Parse_JSON')?['d']?['results']",
+                  "actions": {
+                    "Compose": {
+                      "runAfter": {},
+                      "type": "Compose",
+                      "inputs": "--------------------------------------\n\nMaterial Code :  @{items('Apply_to_each')?['Material']}\n\nMaterial Name : @{items('Apply_to_each')?['MaterialName']}\n\nCurrent Stock : @{items('Apply_to_each')?['CurrentStock']}\n\nPlant Name : @{items('Apply_to_each')?['PlantName']}\n\n-----------------------------------------"
+                    },
+                    "Append_to_string_variable": {
+                      "runAfter": {
+                        "Compose": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "AppendToStringVariable",
+                      "inputs": {
+                        "name": "result_set",
+                        "value": "@outputs('Compose')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "Foreach"
+                }
+              }
+            },
+            "Case_2": {
+              "case": "Highest_restricted_stock",
+              "actions": {
+                "Invoke_an_HTTP_request_2": {
+                  "runAfter": {},
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_webcontents_1",
+                      "operationId": "InvokeHttp",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                    },
+                    "parameters": {
+                      "request/method": "GET",
+                      "request/url": "/sap/opu/odata/sap/MMIM_MULTIPLE_MATERIAL_SRV/MaterialMultiStockByDates?sap-client=505&$select=Material,MaterialName,Plant,PlantName,StorageLocation,StorageLocationName,InventorySpecialStockType,InventorySpecialStockTypeName,CurrentStock,BaseUnit,QualityInspectionStockQuantity,BlockedStockQuantity,GeneratedId&$orderby=CurrentStock%20desc&$top=5&$format=json",
+                      "request/headers": {
+                        "Authorization": "Bearer @{triggerBody()['text_2']}",
+                        "Content-Type": "application/json"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Parse_JSON_2": {
+                  "runAfter": {
+                    "Invoke_an_HTTP_request_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@body('Invoke_an_HTTP_request_2')",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "d": {
+                          "type": "object",
+                          "properties": {
+                            "results": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "__metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "uri": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "BaseUnit": {
+                                    "type": "string"
+                                  },
+                                  "BlockedStockQuantity": {
+                                    "type": "string"
+                                  },
+                                  "CurrentStock": {
+                                    "type": "string"
+                                  },
+                                  "GeneratedId": {
+                                    "type": "string"
+                                  },
+                                  "InventorySpecialStockType": {
+                                    "type": "string"
+                                  },
+                                  "InventorySpecialStockTypeName": {
+                                    "type": "string"
+                                  },
+                                  "Material": {
+                                    "type": "string"
+                                  },
+                                  "MaterialName": {
+                                    "type": "string"
+                                  },
+                                  "Plant": {
+                                    "type": "string"
+                                  },
+                                  "PlantName": {
+                                    "type": "string"
+                                  },
+                                  "QualityInspectionStockQuantity": {
+                                    "type": "string"
+                                  },
+                                  "StorageLocation": {
+                                    "type": "string"
+                                  },
+                                  "StorageLocationName": {
+                                    "type": "string"
+                                  }
+                                },
+                                "required": [
+                                  "__metadata",
+                                  "BaseUnit",
+                                  "BlockedStockQuantity",
+                                  "CurrentStock",
+                                  "GeneratedId",
+                                  "InventorySpecialStockType",
+                                  "InventorySpecialStockTypeName",
+                                  "Material",
+                                  "MaterialName",
+                                  "Plant",
+                                  "PlantName",
+                                  "QualityInspectionStockQuantity",
+                                  "StorageLocation",
+                                  "StorageLocationName"
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Apply_to_each_2": {
+                  "foreach": "@body('Parse_JSON_2')?['d']?['results']",
+                  "actions": {
+                    "Compose_2": {
+                      "runAfter": {},
+                      "type": "Compose",
+                      "inputs": "------------------------------------------\n\nMaterial Code :  @{items('Apply_to_each_2')?['Material']}\n\nMaterial Name : @{items('Apply_to_each_2')?['MaterialName']}\n\nCurrent Stock : @{items('Apply_to_each_2')?['CurrentStock']}\n\nPlant Name : @{items('Apply_to_each_2')?['PlantName']}\n\n-----------------------------------------"
+                    },
+                    "Append_to_string_variable_2": {
+                      "runAfter": {
+                        "Compose_2": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "AppendToStringVariable",
+                      "inputs": {
+                        "name": "result_set",
+                        "value": "@outputs('Compose_2')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_JSON_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "type": "Foreach"
+                }
+              }
+            }
+          },
+          "default": {
+            "actions": {}
+          },
+          "expression": "@triggerBody()['text']",
+          "metadata": {
+            "operationMetadataId": "19df2e96-4a56-4a2a-b659-756510f1f25f"
+          },
+          "type": "Switch"
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "69a2eb4a-33af-4b07-a7b2-4cb1437e762a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "result_set",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}

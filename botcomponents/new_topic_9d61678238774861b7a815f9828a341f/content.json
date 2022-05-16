@@ -1,0 +1,155 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "Purchase Order",
+        "Purchase",
+        "PO",
+        "po",
+        "purchase order"
+      ],
+      "dialogId": "new_topic_9d61678238774861b7a815f9828a341f",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_9d61678238774861b7a815f9828a341f",
+      "displayName": "Purchase Order",
+      "createdTime": "2022-04-27T08:54:35.5272967Z",
+      "updatedTime": "2022-05-09T11:43:48.8564327Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    }
+  ],
+  "namedEntities": [
+    {
+      "id": "e346281d-92f2-47e8-ae91-c873e76184c0",
+      "displayName": "Monitor PO Items"
+    },
+    {
+      "id": "0c41a5e6-6dc3-467b-82ae-2e651fb125bf",
+      "displayName": "Overdue PO Items"
+    },
+    {
+      "id": "8f74c4f9-7d6a-42a5-ad7a-06931e4a5ece",
+      "displayName": "Shortage Report"
+    },
+    {
+      "id": "98d39f43-573e-44e8-b45a-83b86b568473",
+      "displayName": "Spend Analysis"
+    },
+    {
+      "id": "dc58d1aa-a980-44c3-9d97-709f10d390a6",
+      "displayName": "Track PO"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "869cf157-01a3-4ea1-9dc3-6c3de0c5249d",
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_a8d5503d5b4b4a82a5b38263d4b06637",
+          "nodeType": "DialogChangeNode",
+          "id": "440bd095-bfa1-4eba-9626-b0e24d5adf25"
+        },
+        {
+          "targetDialogId": "new_topic_8cb185c8161c40c38cdfa30214e64e3a",
+          "nodeType": "DialogChangeNode",
+          "id": "d4f03143-31bb-4e3f-afda-ed65a302ce16"
+        },
+        {
+          "targetDialogId": "new_topic_a60be3d22d6644fdb73443b4f625b869",
+          "nodeType": "DialogChangeNode",
+          "id": "c9653422-b344-4d4c-916c-2a381fee090b"
+        },
+        {
+          "targetDialogId": "new_topic_1f9e27960a614a30b0943c007d3b8009",
+          "nodeType": "DialogChangeNode",
+          "id": "ec8784e9-dd8c-4079-8919-c90edd138788"
+        },
+        {
+          "targetDialogId": "new_topic_120d35aca7cc4859abe58e2ed288eac5",
+          "nodeType": "DialogChangeNode",
+          "id": "88fc46be-bb20-4f0a-a38c-d1a361686f39"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "f311d371-dfe7-411e-857d-caecbd49a477",
+          "nodeType": "QuestionNode",
+          "id": "869cf157-01a3-4ea1-9dc3-6c3de0c5249d",
+          "routes": [
+            {
+              "expression": "@equals(parameters('f311d371-dfe7-411e-857d-caecbd49a477'), 'e346281d-92f2-47e8-ae91-c873e76184c0')",
+              "targetNodeId": "440bd095-bfa1-4eba-9626-b0e24d5adf25"
+            },
+            {
+              "expression": "@equals(parameters('f311d371-dfe7-411e-857d-caecbd49a477'), '0c41a5e6-6dc3-467b-82ae-2e651fb125bf')",
+              "targetNodeId": "d4f03143-31bb-4e3f-afda-ed65a302ce16"
+            },
+            {
+              "expression": "@equals(parameters('f311d371-dfe7-411e-857d-caecbd49a477'), '8f74c4f9-7d6a-42a5-ad7a-06931e4a5ece')",
+              "targetNodeId": "c9653422-b344-4d4c-916c-2a381fee090b"
+            },
+            {
+              "expression": "@equals(parameters('f311d371-dfe7-411e-857d-caecbd49a477'), '98d39f43-573e-44e8-b45a-83b86b568473')",
+              "targetNodeId": "ec8784e9-dd8c-4079-8919-c90edd138788"
+            },
+            {
+              "expression": "@equals(parameters('f311d371-dfe7-411e-857d-caecbd49a477'), 'dc58d1aa-a980-44c3-9d97-709f10d390a6')",
+              "targetNodeId": "88fc46be-bb20-4f0a-a38c-d1a361686f39"
+            }
+          ],
+          "defaultTargetNodeId": "869cf157-01a3-4ea1-9dc3-6c3de0c5249d"
+        }
+      ],
+      "id": "new_topic_9d61678238774861b7a815f9828a341f",
+      "displayName": "Untitled",
+      "createdTime": "2022-04-27T08:54:35.5272967Z",
+      "updatedTime": "2022-05-09T11:43:48.8564327Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "I have information related to Purchase Order for the below categories. Select a category to proceed."
+        }
+      },
+      "id": "c68055a6-85a5-4022-a14d-47662beffa6b",
+      "createdTime": "2022-04-27T08:53:45.733Z",
+      "updatedTime": "2022-04-27T08:53:45.733Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    }
+  ],
+  "contextVariables": [
+    {
+      "systemType": "String",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "e346281d-92f2-47e8-ae91-c873e76184c0",
+        "0c41a5e6-6dc3-467b-82ae-2e651fb125bf",
+        "8f74c4f9-7d6a-42a5-ad7a-06931e4a5ece",
+        "98d39f43-573e-44e8-b45a-83b86b568473",
+        "dc58d1aa-a980-44c3-9d97-709f10d390a6"
+      ],
+      "messages": {
+        "GetValue": [
+          "c68055a6-85a5-4022-a14d-47662beffa6b"
+        ]
+      },
+      "isGlobal": false,
+      "id": "f311d371-dfe7-411e-857d-caecbd49a477",
+      "displayName": "Var",
+      "createdTime": "2022-04-27T08:54:35.5272967Z",
+      "updatedTime": "2022-05-09T11:43:48.8564327Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    }
+  ]
+}

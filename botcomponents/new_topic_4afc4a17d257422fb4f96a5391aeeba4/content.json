@@ -1,0 +1,113 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "sales data",
+        "sales boardroom",
+        "sales analytics",
+        "sales order",
+        "sales"
+      ],
+      "dialogId": "new_topic_4afc4a17d257422fb4f96a5391aeeba4",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_4afc4a17d257422fb4f96a5391aeeba4",
+      "displayName": "Sales",
+      "createdTime": "2022-04-27T06:39:11.3480365Z",
+      "updatedTime": "2022-05-05T12:52:23.2914679Z",
+      "createdUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ],
+  "namedEntities": [
+    {
+      "id": "d505fb59-a179-45f3-8415-ba0f19bc977d",
+      "displayName": "Sales Analytics"
+    },
+    {
+      "id": "7d649a5f-f5b3-463e-b238-c1dc7e682762",
+      "displayName": "Sales Order"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "d271c3a1-8684-4aeb-bf3f-fb119d68485b",
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_42bab54a337047daaae63fb9818c8506",
+          "nodeType": "DialogChangeNode",
+          "id": "9101d8d6-6197-4943-a973-e18aa5ec1139"
+        },
+        {
+          "targetDialogId": "new_topic_7d80787cb0364b209976348b8d5471cf",
+          "nodeType": "DialogChangeNode",
+          "id": "4ac70458-dcee-4061-9134-8e243d941e51"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "9467e0c1-d28d-49b3-b177-92a3ff93ac79",
+          "nodeType": "QuestionNode",
+          "id": "d271c3a1-8684-4aeb-bf3f-fb119d68485b",
+          "routes": [
+            {
+              "expression": "@equals(parameters('9467e0c1-d28d-49b3-b177-92a3ff93ac79'), 'd505fb59-a179-45f3-8415-ba0f19bc977d')",
+              "targetNodeId": "9101d8d6-6197-4943-a973-e18aa5ec1139"
+            },
+            {
+              "expression": "@equals(parameters('9467e0c1-d28d-49b3-b177-92a3ff93ac79'), '7d649a5f-f5b3-463e-b238-c1dc7e682762')",
+              "targetNodeId": "4ac70458-dcee-4061-9134-8e243d941e51"
+            }
+          ],
+          "defaultTargetNodeId": "d271c3a1-8684-4aeb-bf3f-fb119d68485b"
+        }
+      ],
+      "id": "new_topic_4afc4a17d257422fb4f96a5391aeeba4",
+      "displayName": "Untitled",
+      "createdTime": "2022-04-27T06:39:11.3480365Z",
+      "updatedTime": "2022-05-05T12:52:23.2914679Z",
+      "createdUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "I've information related to Sales for the below categories. Select a category to proceed"
+        }
+      },
+      "id": "3aab82fc-2d0d-4e21-b491-57a27bc4f4f2",
+      "createdTime": "2022-05-04T07:53:21.283Z",
+      "updatedTime": "2022-05-04T07:53:21.283Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    }
+  ],
+  "contextVariables": [
+    {
+      "systemType": "String",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "d505fb59-a179-45f3-8415-ba0f19bc977d",
+        "7d649a5f-f5b3-463e-b238-c1dc7e682762"
+      ],
+      "messages": {
+        "GetValue": [
+          "3aab82fc-2d0d-4e21-b491-57a27bc4f4f2"
+        ]
+      },
+      "isGlobal": false,
+      "id": "9467e0c1-d28d-49b3-b177-92a3ff93ac79",
+      "displayName": "Var",
+      "createdTime": "2022-05-04T07:53:21.284Z",
+      "updatedTime": "2022-05-05T12:52:23.2914679Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ]
+}

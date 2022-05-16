@@ -1,0 +1,86 @@
+{
+  "properties": {
+    "connectionReferences": {},
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "4c9fe38f-2d8a-4266-8c4a-92fb7801899c"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e0e0bd12-ad0f-46a4-8b6d-3cc076446cc0"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "selectedtext": "@{variables('randomtext')[rand(0,length(variables('randomtext')))]}"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "selectedtext": {
+                  "title": "selectedtext",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "617c105c-9800-4fd3-9aab-11483f33cdd9"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "randomtext",
+                "type": "array",
+                "value": [
+                  "I’m sorry, I can appreciate your patience, this must have been frustrating for you.",
+                  "I'm sorry to hear that. Did anything good come out of the situation?",
+                  "Wow, that sucks. But I'm pretty impressed with how positive you've managed to stay about the whole thing.",
+                  "Please, correct me if I'm wrong, but it sounds like you're upset because of my behaviour",
+                  "Oh gosh. Well, I'm sure you'd rather talk about something happier. What else is new in your world?",
+                  "Is there anything I can do?"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}

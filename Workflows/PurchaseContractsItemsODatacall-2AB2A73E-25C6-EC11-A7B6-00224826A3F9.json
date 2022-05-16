@@ -1,0 +1,528 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_webcontents_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedwebcontents_0b60e"
+        },
+        "api": {
+          "name": "shared_webcontents"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "a68fbbb4-adfb-4d53-a032-13b226aa7168"
+          },
+          "type": "Request",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "token",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "CompCode",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_2": {
+                  "title": "SuppName",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_3": {
+                  "title": "inputFlag",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "text_2",
+                "text_3"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Return_value(s)_to_Power_Virtual_Agents": {
+          "runAfter": {
+            "Condition": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "3b36df83-8584-473e-933d-8461f9ba2185"
+          },
+          "type": "Response",
+          "kind": "VirtualAgent",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "response": "@variables('result_set')"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "title": "response",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Condition": {
+          "actions": {
+            "Switch": {
+              "runAfter": {},
+              "cases": {
+                "Case": {
+                  "case": "HighestReleaseValue",
+                  "actions": {
+                    "Invoke_MM_PUR_CTRITEM_MNTR_SRV_01_call": {
+                      "runAfter": {},
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_webcontents_1",
+                          "operationId": "InvokeHttp",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                        },
+                        "parameters": {
+                          "request/method": "GET",
+                          "request/url": "/sap/opu/odata/sap/MM_PUR_CTRITEM_MNTR_SRV_01/C_ContrItemMonitoring(P_DisplayCurrency=%27USD%27)/Results?sap-client=505&$select=MaterialGroup,MaterialGroupName,DisplayCurrency,TargetAmount,ReleaseOrderItemNetAmount,Supplier,SupplierName&$orderby=TargetAmount%20desc&$format=json&$skip=0&$top=1",
+                          "request/headers": {
+                            "Authorization": "Bearer @{triggerBody()['text']}",
+                            "ContentType": "application/json"
+                          }
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Parse_JSON": {
+                      "runAfter": {
+                        "Invoke_MM_PUR_CTRITEM_MNTR_SRV_01_call": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "ParseJson",
+                      "inputs": {
+                        "content": "@body('Invoke_MM_PUR_CTRITEM_MNTR_SRV_01_call')",
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "d": {
+                              "type": "object",
+                              "properties": {
+                                "results": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "__metadata": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "string"
+                                          },
+                                          "uri": {
+                                            "type": "string"
+                                          },
+                                          "type": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      },
+                                      "MaterialGroup": {
+                                        "type": "string"
+                                      },
+                                      "MaterialGroupName": {
+                                        "type": "string"
+                                      },
+                                      "TargetAmount": {
+                                        "type": "string"
+                                      },
+                                      "Supplier": {
+                                        "type": "string"
+                                      },
+                                      "SupplierName": {
+                                        "type": "string"
+                                      },
+                                      "DisplayCurrency": {
+                                        "type": "string"
+                                      },
+                                      "ReleaseOrderItemNetAmount": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "__metadata",
+                                      "MaterialGroup",
+                                      "MaterialGroupName",
+                                      "TargetAmount",
+                                      "Supplier",
+                                      "SupplierName",
+                                      "DisplayCurrency",
+                                      "ReleaseOrderItemNetAmount"
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Apply_to_each": {
+                      "foreach": "@body('Parse_JSON')?['d']?['results']",
+                      "actions": {
+                        "Compose": {
+                          "runAfter": {},
+                          "type": "Compose",
+                          "inputs": "Supplier Code is @{items('Apply_to_each')?['Supplier']}\n\nSupplier Name is @{items('Apply_to_each')?['SupplierName']}"
+                        },
+                        "Append_to_string_variable": {
+                          "runAfter": {
+                            "Compose": [
+                              "Succeeded"
+                            ]
+                          },
+                          "type": "AppendToStringVariable",
+                          "inputs": {
+                            "name": "result_set",
+                            "value": "@outputs('Compose')"
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Parse_JSON": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "Foreach"
+                    }
+                  }
+                },
+                "Case_2": {
+                  "case": "ExpiringContracts",
+                  "actions": {
+                    "Call_MM_PUR_CTRITEM_MNTR_SRV_01_Odata_Call": {
+                      "runAfter": {},
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_webcontents_1",
+                          "operationId": "InvokeHttp",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                        },
+                        "parameters": {
+                          "request/method": "GET",
+                          "request/url": "/sap/opu/odata/sap/MM_PUR_CTRITEM_MNTR_SRV_01/C_ContrItemMonitoring(P_DisplayCurrency=%27USD%27)/Results?sap-client=505&$select=ValidityEndDate,MaterialGroup,MaterialGroupName,DisplayCurrency,TargetAmount,ReleaseOrderItemNetAmount&$filter=(((PurchaseContractValidityStatus%20eq%20%2701%27)))&$orderby=ValidityEndDate%20desc&$inlinecount=allpages&$format=json",
+                          "request/headers": {
+                            "Authorization": "Bearer @{triggerBody()['text']}",
+                            "ContentType": "application/json"
+                          }
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Parse_JSON_2": {
+                      "runAfter": {
+                        "Call_MM_PUR_CTRITEM_MNTR_SRV_01_Odata_Call": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "ParseJson",
+                      "inputs": {
+                        "content": "@body('Call_MM_PUR_CTRITEM_MNTR_SRV_01_Odata_Call')",
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "d": {
+                              "type": "object",
+                              "properties": {
+                                "__count": {
+                                  "type": "string"
+                                },
+                                "results": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "__metadata": {
+                                        "type": "object",
+                                        "properties": {
+                                          "id": {
+                                            "type": "string"
+                                          },
+                                          "uri": {
+                                            "type": "string"
+                                          },
+                                          "type": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      },
+                                      "MaterialGroup": {
+                                        "type": "string"
+                                      },
+                                      "MaterialGroupName": {
+                                        "type": "string"
+                                      },
+                                      "TargetAmount": {
+                                        "type": "string"
+                                      },
+                                      "ValidityEndDate": {
+                                        "type": "string"
+                                      },
+                                      "DisplayCurrency": {
+                                        "type": "string"
+                                      },
+                                      "ReleaseOrderItemNetAmount": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "required": [
+                                      "__metadata",
+                                      "MaterialGroup",
+                                      "MaterialGroupName",
+                                      "TargetAmount",
+                                      "ValidityEndDate",
+                                      "DisplayCurrency",
+                                      "ReleaseOrderItemNetAmount"
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Set_variable": {
+                      "runAfter": {
+                        "Parse_JSON_2": [
+                          "Succeeded"
+                        ]
+                      },
+                      "type": "SetVariable",
+                      "inputs": {
+                        "name": "result_set",
+                        "value": "@body('Parse_JSON_2')?['d']?['__count']"
+                      }
+                    }
+                  }
+                }
+              },
+              "default": {
+                "actions": {}
+              },
+              "expression": "@triggerBody()['text_3']",
+              "metadata": {
+                "operationMetadataId": "bf007dc8-7a79-4103-bb18-f7100d89ed73"
+              },
+              "type": "Switch"
+            }
+          },
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Switch_2": {
+                "runAfter": {},
+                "cases": {
+                  "Case": {
+                    "case": "TotalPurchaseContracts",
+                    "actions": {
+                      "Invoke_an_HTTP_request": {
+                        "runAfter": {},
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_webcontents_1",
+                            "operationId": "InvokeHttp",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_webcontents"
+                          },
+                          "parameters": {
+                            "request/method": "GET",
+                            "request/url": "/sap/opu/odata/sap/MM_PUR_CTRITEM_MNTR_SRV_01/C_ContrItemMonitoring(P_DisplayCurrency=%27USD%27)/Results?sap-client=505&$select=MaterialGroup,MaterialGroupName,DisplayCurrency,TargetAmount,ReleaseOrderItemNetAmount&$filter=((((Supplier%20eq%20%27@{triggerBody()['text_2']}%27))%20and%20((CompanyCode%20eq%20%27@{triggerBody()['text_1']}%27))))&$orderby=TargetAmount%20desc&$inlinecount=allpages&$format=json",
+                            "request/headers": {
+                              "Authorization": "Bearer @{triggerBody()['text']}",
+                              "ContentType": "application/json"
+                            }
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        }
+                      },
+                      "Parse_JSON_3": {
+                        "runAfter": {
+                          "Invoke_an_HTTP_request": [
+                            "Succeeded"
+                          ]
+                        },
+                        "type": "ParseJson",
+                        "inputs": {
+                          "content": "@body('Invoke_an_HTTP_request')",
+                          "schema": {
+                            "type": "object",
+                            "properties": {
+                              "d": {
+                                "type": "object",
+                                "properties": {
+                                  "__count": {
+                                    "type": "string"
+                                  },
+                                  "results": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "__metadata": {
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "type": "string"
+                                            },
+                                            "uri": {
+                                              "type": "string"
+                                            },
+                                            "type": {
+                                              "type": "string"
+                                            }
+                                          }
+                                        },
+                                        "MaterialGroup": {
+                                          "type": "string"
+                                        },
+                                        "MaterialGroupName": {
+                                          "type": "string"
+                                        },
+                                        "TargetAmount": {
+                                          "type": "string"
+                                        },
+                                        "DisplayCurrency": {
+                                          "type": "string"
+                                        },
+                                        "ReleaseOrderItemNetAmount": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "__metadata",
+                                        "MaterialGroup",
+                                        "MaterialGroupName",
+                                        "TargetAmount",
+                                        "DisplayCurrency",
+                                        "ReleaseOrderItemNetAmount"
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "Set_variable_2": {
+                        "runAfter": {
+                          "Parse_JSON_3": [
+                            "Succeeded"
+                          ]
+                        },
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "result_set",
+                          "value": "@body('Parse_JSON_3')?['d']?['__count']"
+                        }
+                      }
+                    }
+                  }
+                },
+                "default": {
+                  "actions": {}
+                },
+                "expression": "@triggerBody()['text_3']",
+                "metadata": {
+                  "operationMetadataId": "19c9a90c-3707-41e1-b8be-15cbe4fcfa37"
+                },
+                "type": "Switch"
+              }
+            }
+          },
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@triggerBody()['text_2']",
+                  "NA"
+                ]
+              },
+              {
+                "equals": [
+                  "@triggerBody()['text_1']",
+                  "NA"
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "f85de880-15af-48eb-b2be-0675c4e18e60"
+          },
+          "type": "If"
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "28f7f494-9b24-4f54-86f6-d02b97ef8dff"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "result_set",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      },
+      "outputs": {}
+    }
+  },
+  "schemaVersion": "1.0.0.0"
+}

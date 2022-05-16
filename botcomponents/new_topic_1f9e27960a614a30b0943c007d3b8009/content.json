@@ -1,0 +1,615 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "spend analysis"
+      ],
+      "dialogId": "new_topic_1f9e27960a614a30b0943c007d3b8009",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_1f9e27960a614a30b0943c007d3b8009",
+      "displayName": "Spend Analysis",
+      "createdTime": "2022-05-06T06:53:20.5914621Z",
+      "updatedTime": "2022-05-10T13:28:35.4696825Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    }
+  ],
+  "namedEntities": [
+    {
+      "id": "85a2aee2-0c8e-4224-a87c-8185070cd827",
+      "displayName": "Retry"
+    },
+    {
+      "id": "a8d1d81e-23a0-4654-acf6-2f0cb023c48c",
+      "displayName": "Talk to an agent"
+    },
+    {
+      "id": "aa91787e-720c-4877-b119-9cf889feb690",
+      "displayName": "With purchase group"
+    },
+    {
+      "id": "63712f25-98dc-46ba-b7eb-be59b3c520b7",
+      "displayName": "Without purchase group"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "5ebe0360-98bc-4da1-ac11-366e1d7069f7",
+      "messageNodes": [
+        {
+          "botMessageId": "279b2f77-31cf-48c3-8181-2541131dd590",
+          "nodeType": "BotMessageNode",
+          "id": "c4702612-d381-4c30-ba64-e9dd7b09a624",
+          "defaultTargetNodeId": "92857c7a-fb8f-4b4e-a8ec-518f4e374565"
+        },
+        {
+          "botMessageId": "4a8c26a1-609d-4bbf-b053-d62f47fd711f",
+          "nodeType": "BotMessageNode",
+          "id": "64ad042b-dd65-4ea7-8180-a18339a2171f",
+          "defaultTargetNodeId": "5a635518-802f-4901-88d7-a0c9f17f1014"
+        },
+        {
+          "botMessageId": "c79b8ba8-0310-47fd-9101-a8a2776f9afc",
+          "nodeType": "BotMessageNode",
+          "id": "89097e0c-9960-4d7c-aa21-af73e5718d94",
+          "defaultTargetNodeId": "3d425ff2-2a09-409e-a333-d94b0dc968d0"
+        },
+        {
+          "botMessageId": "b14a4ae6-2c7a-4fff-a20a-c128402ab745",
+          "nodeType": "BotMessageNode",
+          "id": "b17db567-c1a8-4e17-9f6b-60659ec9dc3f"
+        }
+      ],
+      "actionNodes": [
+        {
+          "contextVariableId": "20c9f42b-e596-4b25-b176-338021e37848",
+          "nodeType": "ActionNode",
+          "inputParameterVariableIdMap": {
+            "text": "{a947718b-ab6d-44a8-9a58-9ecd3f3af86c}",
+            "text_1": "ZMCMM_PRC_OVP_0001"
+          },
+          "outputExpressionVariableIds": [
+            "07739ddc-2d44-49c9-9b27-90494ce82e7a"
+          ],
+          "id": "186f96be-3938-41a0-8b37-a3c2943a8aa7",
+          "defaultTargetNodeId": "107cbabb-0167-4407-99ea-12a57dc1e81b"
+        },
+        {
+          "contextVariableId": "71d1778f-6cc5-46db-b7d5-d62115ad501a",
+          "nodeType": "ActionNode",
+          "inputParameterVariableIdMap": {
+            "text": "{07739ddc-2d44-49c9-9b27-90494ce82e7a}",
+            "text_1": "NA",
+            "text_2": "{a3ec3868-d8ae-4db0-915d-e735e96d8801}"
+          },
+          "outputExpressionVariableIds": [
+            "1f17a822-2300-4656-868f-e92ebf0e69f8"
+          ],
+          "id": "fb1a7653-2649-474d-906f-49c3fe44e239",
+          "defaultTargetNodeId": "89097e0c-9960-4d7c-aa21-af73e5718d94"
+        },
+        {
+          "contextVariableId": "85bfd25e-3975-4c53-8228-668dec4dfd09",
+          "nodeType": "ActionNode",
+          "inputParameterVariableIdMap": {
+            "text": "{07739ddc-2d44-49c9-9b27-90494ce82e7a}",
+            "text_1": "{7496fe37-4dbf-41d7-8507-e049d245ef3c}",
+            "text_2": "{a3ec3868-d8ae-4db0-915d-e735e96d8801}"
+          },
+          "outputExpressionVariableIds": [
+            "0421b52a-e91b-4bd4-a265-5bc4a827768d"
+          ],
+          "id": "f346504b-d216-485c-ac58-a2d25ca5a0d2",
+          "routes": [
+            {
+              "expression": "@or(equals(parameters('0421b52a-e91b-4bd4-a265-5bc4a827768d'), ''), equals(parameters('0421b52a-e91b-4bd4-a265-5bc4a827768d'), null))",
+              "targetNodeId": "b17db567-c1a8-4e17-9f6b-60659ec9dc3f"
+            }
+          ],
+          "defaultTargetNodeId": "64ad042b-dd65-4ea7-8180-a18339a2171f"
+        }
+      ],
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_37ca5af80c774e0187928cc81ca8ea7a_aeabea4d071f415c8c107e1cb7af5424_assumedsuccess",
+          "nodeType": "DialogChangeNode",
+          "id": "3d425ff2-2a09-409e-a333-d94b0dc968d0"
+        },
+        {
+          "targetDialogId": "new_topic_37ca5af80c774e0187928cc81ca8ea7a_aeabea4d071f415c8c107e1cb7af5424_assumedsuccess",
+          "nodeType": "DialogChangeNode",
+          "id": "5a635518-802f-4901-88d7-a0c9f17f1014"
+        }
+      ],
+      "questionNodes": [
+        {
+          "contextVariableId": "15fbb407-61bc-4da6-ae09-29365705f521",
+          "nodeType": "QuestionNode",
+          "id": "92857c7a-fb8f-4b4e-a8ec-518f4e374565"
+        },
+        {
+          "contextVariableId": "7496fe37-4dbf-41d7-8507-e049d245ef3c",
+          "nodeType": "QuestionNode",
+          "id": "d01e2052-fa81-4dae-b1da-6449dbba878e",
+          "defaultTargetNodeId": "f346504b-d216-485c-ac58-a2d25ca5a0d2"
+        },
+        {
+          "contextVariableId": "a3ec3868-d8ae-4db0-915d-e735e96d8801",
+          "nodeType": "QuestionNode",
+          "id": "107cbabb-0167-4407-99ea-12a57dc1e81b",
+          "routes": [
+            {
+              "expression": "@equals(parameters('a3ec3868-d8ae-4db0-915d-e735e96d8801'), 'aa91787e-720c-4877-b119-9cf889feb690')",
+              "targetNodeId": "d01e2052-fa81-4dae-b1da-6449dbba878e"
+            },
+            {
+              "expression": "@equals(parameters('a3ec3868-d8ae-4db0-915d-e735e96d8801'), '63712f25-98dc-46ba-b7eb-be59b3c520b7')",
+              "targetNodeId": "fb1a7653-2649-474d-906f-49c3fe44e239"
+            }
+          ],
+          "defaultTargetNodeId": "107cbabb-0167-4407-99ea-12a57dc1e81b"
+        }
+      ],
+      "loginNodes": [
+        {
+          "userTokenVariableId": "a947718b-ab6d-44a8-9a58-9ecd3f3af86c",
+          "nodeType": "LoginNode",
+          "id": "5ebe0360-98bc-4da1-ac11-366e1d7069f7",
+          "routes": [
+            {
+              "expression": "@equals(parameters('a79b14f0-656b-4d39-96db-2abf9ec3c8e3'), true)",
+              "targetNodeId": "186f96be-3938-41a0-8b37-a3c2943a8aa7"
+            }
+          ],
+          "defaultTargetNodeId": "c4702612-d381-4c30-ba64-e9dd7b09a624"
+        }
+      ],
+      "id": "new_topic_1f9e27960a614a30b0943c007d3b8009",
+      "displayName": "Untitled",
+      "createdTime": "2022-05-06T06:53:20.5914621Z",
+      "updatedTime": "2022-05-10T13:28:35.4696825Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    }
+  ],
+  "botMessages": [
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "What would you like to do next?"
+        }
+      },
+      "id": "5777eb24-f18d-4a06-8430-877eed5df3ae",
+      "createdTime": "2022-05-06T06:41:51.969Z",
+      "updatedTime": "2022-05-06T06:41:51.969Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Please enter Purchasing group for which PO Net Amount spent to be analysed:\n\neg: 101"
+        }
+      },
+      "id": "82c14581-80e9-4dd7-a651-492fade5b41d",
+      "createdTime": "2022-05-06T06:45:45.864Z",
+      "updatedTime": "2022-05-06T06:45:45.864Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "PO Net Amount by Material Group in USD to be extracted :"
+        }
+      },
+      "id": "24971fde-1da3-4aad-9f06-87fce3f8996e",
+      "createdTime": "2022-05-06T06:54:49.227Z",
+      "updatedTime": "2022-05-06T06:54:49.227Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "There was an issue logging you in."
+        }
+      },
+      "id": "279b2f77-31cf-48c3-8181-2541131dd590",
+      "createdTime": "2022-05-06T06:41:51.97Z",
+      "updatedTime": "2022-05-06T06:41:51.97Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Top 5 - Highest PO Net Amount by Material Group in USD for the Purchasing Group {7496fe37-4dbf-41d7-8507-e049d245ef3c} is as follows:\n\n{0421b52a-e91b-4bd4-a265-5bc4a827768d}"
+        }
+      },
+      "id": "4a8c26a1-609d-4bbf-b053-d62f47fd711f",
+      "createdTime": "2022-05-06T07:54:41.708Z",
+      "updatedTime": "2022-05-06T07:54:41.708Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "Top 5 - Highest PO Net Amount by Material Group in USD is as follows:\n\n{1f17a822-2300-4656-868f-e92ebf0e69f8}"
+        }
+      },
+      "id": "c79b8ba8-0310-47fd-9101-a8a2776f9afc",
+      "createdTime": "2022-05-06T07:55:37.047Z",
+      "updatedTime": "2022-05-06T07:55:37.047Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    },
+    {
+      "channelContent": {
+        "web": {
+          "contentFormat": "Markdown",
+          "content": "sorry, no data available for the given Purchasing group {7496fe37-4dbf-41d7-8507-e049d245ef3c}"
+        }
+      },
+      "id": "b14a4ae6-2c7a-4fff-a20a-c128402ab745",
+      "createdTime": "2022-05-06T13:25:41.032Z",
+      "updatedTime": "2022-05-06T13:25:41.032Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "user-0"
+    }
+  ],
+  "actionDefinitions": [
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "{\"text\":\"{a947718b-ab6d-44a8-9a58-9ecd3f3af86c}\",\"text_1\":\"ZMCMM_PRC_OVP_0001\"}",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "4cd5781b-6ab1-ec11-9840-000d3a993196",
+        "title": "solarbot-exchange-token-flow",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "inputParameters": [
+          {
+            "name": "AADJWT",
+            "id": "text",
+            "type": "String",
+            "optional": false
+          },
+          {
+            "name": "ServiceScope",
+            "id": "text_1",
+            "type": "String",
+            "optional": false
+          }
+        ],
+        "outputParameters": [
+          {
+            "name": "SAPToken",
+            "id": "saptoken",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2022-04-01T03:16:24Z",
+        "isEnabled": true,
+        "lastModifiedTime": "2022-05-04T09:15:29Z",
+        "versionNumber": 20051089
+      },
+      "id": "21df2f61-e93b-46e9-9ebe-330cf178d88d",
+      "displayName": "solarbot-exchange-token-flow",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2022-05-06T06:43:20.612Z",
+      "updatedTime": "2022-05-06T06:43:20.612Z"
+    },
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "{\"text\":\"{07739ddc-2d44-49c9-9b27-90494ce82e7a}\",\"text_1\":\"NA\",\"text_2\":\"{a3ec3868-d8ae-4db0-915d-e735e96d8801}\"}",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "50df0a06-0acd-ec11-a7b5-00224834a45c",
+        "title": "Spend Analysis ODATA Flow",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "inputParameters": [
+          {
+            "name": "token",
+            "id": "text",
+            "type": "String",
+            "optional": false
+          },
+          {
+            "name": "purchase group",
+            "id": "text_1",
+            "type": "String",
+            "optional": false
+          },
+          {
+            "name": "flow",
+            "id": "text_2",
+            "type": "String",
+            "optional": false
+          }
+        ],
+        "outputParameters": [
+          {
+            "name": "response",
+            "id": "response",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2022-05-06T06:59:08Z",
+        "isEnabled": true,
+        "lastModifiedTime": "2022-05-06T07:48:58Z",
+        "versionNumber": 20059864
+      },
+      "id": "d498d542-c783-4f6e-a259-eae4cda85f91",
+      "displayName": "Spend Analysis ODATA Flow",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2022-05-06T07:53:30.438Z",
+      "updatedTime": "2022-05-06T07:53:30.438Z"
+    },
+    {
+      "timeoutInSeconds": 60,
+      "retryCount": 1,
+      "method": 2,
+      "headers": {
+        "accept": "application/json"
+      },
+      "bodyContent": "{\"text\":\"{07739ddc-2d44-49c9-9b27-90494ce82e7a}\",\"text_1\":\"{7496fe37-4dbf-41d7-8507-e049d245ef3c}\",\"text_2\":\"{a3ec3868-d8ae-4db0-915d-e735e96d8801}\"}",
+      "actionType": "Flow",
+      "flowMetadata": {
+        "id": "50df0a06-0acd-ec11-a7b5-00224834a45c",
+        "title": "Spend Analysis ODATA Flow",
+        "description": "Call this flow from Power Virtual Agents.",
+        "httpMethod": 2,
+        "inputParameters": [
+          {
+            "name": "token",
+            "id": "text",
+            "type": "String",
+            "optional": false
+          },
+          {
+            "name": "purchase group",
+            "id": "text_1",
+            "type": "String",
+            "optional": false
+          },
+          {
+            "name": "flow",
+            "id": "text_2",
+            "type": "String",
+            "optional": false
+          }
+        ],
+        "outputParameters": [
+          {
+            "name": "response",
+            "id": "response",
+            "type": "String",
+            "optional": true
+          }
+        ],
+        "outputSchemaType": "Json",
+        "createdTime": "2022-05-06T06:59:08Z",
+        "isEnabled": true,
+        "lastModifiedTime": "2022-05-06T07:53:31Z",
+        "versionNumber": 20059897
+      },
+      "id": "7b0cff06-ac8a-4e87-9013-9f94ddf12838",
+      "displayName": "Spend Analysis ODATA Flow",
+      "description": "Call this flow from Power Virtual Agents.",
+      "createdTime": "2022-05-06T07:54:21.612Z",
+      "updatedTime": "2022-05-06T07:54:21.612Z"
+    }
+  ],
+  "contextVariables": [
+    {
+      "systemType": "String",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "85a2aee2-0c8e-4224-a87c-8185070cd827",
+        "a8d1d81e-23a0-4654-acf6-2f0cb023c48c"
+      ],
+      "messages": {
+        "GetValue": [
+          "5777eb24-f18d-4a06-8430-877eed5df3ae"
+        ]
+      },
+      "isGlobal": false,
+      "id": "15fbb407-61bc-4da6-ae09-29365705f521",
+      "displayName": "User choice",
+      "createdTime": "2022-05-06T06:53:20.5914621Z",
+      "updatedTime": "2022-05-10T13:28:35.4696825Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "None",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "messages": {
+        "GetValue": [
+          "82c14581-80e9-4dd7-a651-492fade5b41d"
+        ]
+      },
+      "isGlobal": false,
+      "id": "7496fe37-4dbf-41d7-8507-e049d245ef3c",
+      "displayName": "poGroup",
+      "createdTime": "2022-05-06T06:53:20.5914621Z",
+      "updatedTime": "2022-05-10T13:28:35.4696825Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "UserQuestion",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": true,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "namedEntityOptions": [
+        "aa91787e-720c-4877-b119-9cf889feb690",
+        "63712f25-98dc-46ba-b7eb-be59b3c520b7"
+      ],
+      "messages": {
+        "GetValue": [
+          "24971fde-1da3-4aad-9f06-87fce3f8996e"
+        ]
+      },
+      "isGlobal": false,
+      "id": "a3ec3868-d8ae-4db0-915d-e735e96d8801",
+      "displayName": "flow",
+      "createdTime": "2022-05-06T06:54:49.227Z",
+      "updatedTime": "2022-05-10T13:28:35.4696825Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "customTypeId": "e4b48a01-0582-4fcf-98a9-4a3328d33dfd",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "21df2f61-e93b-46e9-9ebe-330cf178d88d",
+      "isGlobal": false,
+      "id": "20c9f42b-e596-4b25-b176-338021e37848",
+      "displayName": "",
+      "createdTime": "2022-05-06T06:53:20.5914621Z",
+      "updatedTime": "2022-05-10T13:28:35.4696825Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('20c9f42b-e596-4b25-b176-338021e37848')['saptoken']",
+      "isGlobal": false,
+      "id": "07739ddc-2d44-49c9-9b27-90494ce82e7a",
+      "displayName": "SAPToken",
+      "createdTime": "2022-05-06T06:53:20.5914621Z",
+      "updatedTime": "2022-05-10T13:28:35.4696825Z",
+      "createdUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "customTypeId": "134e6577-19b1-46dc-81d8-8c5fc3f98e46",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "d498d542-c783-4f6e-a259-eae4cda85f91",
+      "isGlobal": false,
+      "id": "71d1778f-6cc5-46db-b7d5-d62115ad501a",
+      "displayName": "",
+      "createdTime": "2022-05-06T07:53:30.439Z",
+      "updatedTime": "2022-05-10T13:28:35.4696825Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('71d1778f-6cc5-46db-b7d5-d62115ad501a')['response']",
+      "isGlobal": false,
+      "id": "1f17a822-2300-4656-868f-e92ebf0e69f8",
+      "displayName": "response",
+      "createdTime": "2022-05-06T07:53:30.439Z",
+      "updatedTime": "2022-05-10T13:28:35.4696825Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "customTypeId": "aa511437-073f-4770-a39d-91b83687bb79",
+      "initializerType": "Action",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "actionId": "7b0cff06-ac8a-4e87-9013-9f94ddf12838",
+      "isGlobal": false,
+      "id": "85bfd25e-3975-4c53-8228-668dec4dfd09",
+      "displayName": "",
+      "createdTime": "2022-05-06T07:54:21.612Z",
+      "updatedTime": "2022-05-10T13:28:35.4696825Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    },
+    {
+      "systemType": "String",
+      "initializerType": "Expression",
+      "scope": "Dialog",
+      "greedySlotFillingEnabled": false,
+      "isInput": false,
+      "externalInitializationAllowed": false,
+      "expression": "@parameters('85bfd25e-3975-4c53-8228-668dec4dfd09')['response']",
+      "isGlobal": false,
+      "id": "0421b52a-e91b-4bd4-a265-5bc4a827768d",
+      "displayName": "response1",
+      "createdTime": "2022-05-06T07:54:21.612Z",
+      "updatedTime": "2022-05-10T13:28:35.4696825Z",
+      "createdUserId": "user-0",
+      "updatedUserId": "219463c1-1b13-4c85-a223-5c5657f6b88b"
+    }
+  ],
+  "jsonTypes": [
+    {
+      "customTypeSchema": "Json",
+      "id": "e4b48a01-0582-4fcf-98a9-4a3328d33dfd",
+      "displayName": "Response Json Type for Flow - solarbot-exchange-token-flow",
+      "createdTime": "2022-05-06T06:43:20.613Z",
+      "updatedTime": "2022-05-06T06:43:20.613Z"
+    },
+    {
+      "customTypeSchema": "Json",
+      "id": "134e6577-19b1-46dc-81d8-8c5fc3f98e46",
+      "displayName": "Response Json Type for Flow - Spend Analysis ODATA Flow",
+      "createdTime": "2022-05-06T07:53:30.439Z",
+      "updatedTime": "2022-05-06T07:53:30.439Z"
+    },
+    {
+      "customTypeSchema": "Json",
+      "id": "aa511437-073f-4770-a39d-91b83687bb79",
+      "displayName": "Response Json Type for Flow - Spend Analysis ODATA Flow",
+      "createdTime": "2022-05-06T07:54:21.612Z",
+      "updatedTime": "2022-05-06T07:54:21.612Z"
+    }
+  ]
+}

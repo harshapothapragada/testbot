@@ -1,0 +1,41 @@
+{
+  "intents": [
+    {
+      "triggerQueries": [
+        "topic",
+        "what's up",
+        "view all",
+        "view topics",
+        "what topics",
+        "all topics",
+        "topics"
+      ],
+      "dialogId": "new_topic_5697edf8f5d14150b1e871bc1c0cb544",
+      "isTriggeringEnabled": true,
+      "id": "new_topic_5697edf8f5d14150b1e871bc1c0cb544",
+      "displayName": "Random entries",
+      "createdTime": "2022-05-05T13:31:48.6597266Z",
+      "updatedTime": "2022-05-05T13:32:16.0194593Z",
+      "createdUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ],
+  "dialogs": [
+    {
+      "rootNodeId": "b31b3500-e2f3-446e-ad8b-4bb8139e671c",
+      "dialogChangeNodes": [
+        {
+          "targetDialogId": "new_topic_37ca5af80c774e0187928cc81ca8ea7a_ba7b967c97ba4c39bca58a8bb6a72d59_conversationstart",
+          "nodeType": "DialogChangeNode",
+          "id": "b31b3500-e2f3-446e-ad8b-4bb8139e671c"
+        }
+      ],
+      "id": "new_topic_5697edf8f5d14150b1e871bc1c0cb544",
+      "displayName": "Untitled",
+      "createdTime": "2022-05-05T13:31:48.6597266Z",
+      "updatedTime": "2022-05-05T13:32:16.0194593Z",
+      "createdUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893",
+      "updatedUserId": "e8bc7691-44cd-46dc-ba73-046f89f27893"
+    }
+  ]
+}

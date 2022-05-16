@@ -1,0 +1,549 @@
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Entities></Entities>
+  <Roles></Roles>
+  <Workflows>
+    <Workflow WorkflowId="{5e2be42d-7ecf-ec11-a7b5-000d3a8cc416}" Name="Track PO ODATA Flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/TrackPOODATAFlow-5E2BE42D-7ECF-EC11-A7B5-000D3A8CC416.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.1</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Track PO ODATA Flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{f705cb10-ffd0-ec11-a7b5-000d3a8cc416}" Name="OM Dashboard ODATA Flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/OMDashboardODATAFlow-F705CB10-FFD0-EC11-A7B5-000D3A8CC416.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.2.0.3</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="OM Dashboard ODATA Flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{fbce71a9-0cd1-ec11-a7b5-000d3a8cc416}" Name="Total Sales ODATA Flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/TotalSalesODATAFlow-FBCE71A9-0CD1-EC11-A7B5-000D3A8CC416.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.2.0.3</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Total Sales ODATA Flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{4cd5781b-6ab1-ec11-9840-000d3a993196}" Name="solarbot-exchange-token-flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/solarbot-exchange-token-flow-4CD5781B-6AB1-EC11-9840-000D3A993196.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="solarbot-exchange-token-flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{3e0b6cca-85ba-ec11-983f-00224823ae8d}" Name="Sales Order Odata Flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/SalesOrderOdataFlow-3E0B6CCA-85BA-EC11-983F-00224823AE8D.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Sales Order Odata Flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{3acf9d6e-70c4-ec11-a7b6-00224826a3f9}" Name="Sales Analytics ODATA Flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/SalesAnalyticsODATAFlow-3ACF9D6E-70C4-EC11-A7B6-00224826A3F9.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Sales Analytics ODATA Flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{6f72c54f-79c4-ec11-a7b6-00224826a3f9}" Name="Monthly Sales Revenue ODATA Flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/MonthlySalesRevenueODATAFlow-6F72C54F-79C4-EC11-A7B6-00224826A3F9.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Monthly Sales Revenue ODATA Flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{50a7d160-81c4-ec11-a7b6-00224826a3f9}" Name="Profit Margin/Credit Memos ODATA Flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/ProfitMarginCreditMemosODATAFlow-50A7D160-81C4-EC11-A7B6-00224826A3F9.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>0</StateCode>
+      <StatusCode>1</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Profit Margin/Credit Memos ODATA Flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{3034c8d4-83c4-ec11-a7b6-00224826a3f9}" Name="Sales Volume Analytics ODATA Flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/SalesVolumeAnalyticsODATAFlow-3034C8D4-83C4-EC11-A7B6-00224826A3F9.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>0</StateCode>
+      <StatusCode>1</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Sales Volume Analytics ODATA Flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{57c580d9-2ec5-ec11-a7b6-00224826a3f9}" Name="Highest PO NetAmount ODATA Flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/HighestPONetAmountODATAFlow-57C580D9-2EC5-EC11-A7B6-00224826A3F9.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Highest PO NetAmount ODATA Flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{b73a2217-3dc5-ec11-a7b6-00224826a3f9}" Name="Upcoming Deliveries Planned ODATA Flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/UpcomingDeliveriesPlannedODATAFlow-B73A2217-3DC5-EC11-A7B6-00224826A3F9.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Upcoming Deliveries Planned ODATA Flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{17775bcb-fec5-ec11-a7b6-00224826a3f9}" Name="Overdue PO Items ODATA Flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/OverduePOItemsODATAFlow-17775BCB-FEC5-EC11-A7B6-00224826A3F9.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Overdue PO Items ODATA Flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{2ab2a73e-25c6-ec11-a7b6-00224826a3f9}" Name="Purchase Contracts Items OData call" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/PurchaseContractsItemsODatacall-2AB2A73E-25C6-EC11-A7B6-00224826A3F9.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Purchase Contracts Items OData call" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{981fe7ee-29c6-ec11-a7b6-00224826a3f9}" Name="Shortage Report ODATA Flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/ShortageReportODATAFlow-981FE7EE-29C6-EC11-A7B6-00224826A3F9.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Shortage Report ODATA Flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{9b583585-ccc6-ec11-a7b6-00224826a3f9}" Name="Sales BoardRoom ODATA Flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/SalesBoardRoomODATAFlow-9B583585-CCC6-EC11-A7B6-00224826A3F9.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Sales BoardRoom ODATA Flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{1c242cc2-70cc-ec11-a7b5-00224834a45c}" Name="random texts" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/randomtexts-1C242CC2-70CC-EC11-A7B5-00224834A45C.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="random texts" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{278ff385-07cd-ec11-a7b5-00224834a45c}" Name="Stock Odata flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/StockOdataflow-278FF385-07CD-EC11-A7B5-00224834A45C.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.1</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Stock Odata flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{50df0a06-0acd-ec11-a7b5-00224834a45c}" Name="Spend Analysis ODATA Flow" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/SpendAnalysisODATAFlow-50DF0A06-0ACD-EC11-A7B5-00224834A45C.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.1</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Spend Analysis ODATA Flow" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+    <Workflow WorkflowId="{fe63e125-19cd-ec11-a7b5-00224834a45c}" Name="negative random texts" Description="Call this flow from Power Virtual Agents.">
+      <JsonFileName>/Workflows/negativerandomtexts-FE63E125-19CD-EC11-A7B5-00224834A45C.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.1</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="negative random texts" />
+      </LocalizedNames>
+      <Descriptions>
+        <Description languagecode="1033" description="Call this flow from Power Virtual Agents." />
+      </Descriptions>
+    </Workflow>
+  </Workflows>
+  <FieldSecurityProfiles></FieldSecurityProfiles>
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <EntityDataProviders />
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>
